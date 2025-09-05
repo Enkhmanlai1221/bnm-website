@@ -7,7 +7,7 @@ export default function PrivateLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="position-relative overflow-hidden  flex flex-col min-h-screen bg-[#E8EFFF]">
       <Header />
       <main className="flex-grow">{children}</main>
       <Footer />

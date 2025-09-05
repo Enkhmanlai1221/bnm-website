@@ -78,6 +78,11 @@
   animation: fadeInUp 1s ease-out 1.2s both;
 }
 
+/* Fade in up animation */
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease-out both;
+}
+
 /* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
