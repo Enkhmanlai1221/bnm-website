@@ -45,26 +45,26 @@ export function Header() {
     <div className="relative overflow-hidden h-[40vh]">
       <div className="position-absolute overflow-hidden h-[36vh]">
         <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-1000"
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: "url('/header-bg.png')",
-            transform: `translateY(${scrollY * 0.5}px)`,
+            backgroundImage: "url('/header.png')",
+            // transform: `translateY(${scrollY * 0.5}px)`,
           }}
         >
           <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/30 to-black/50"></div>
         </div>
         <div className="relative z-10 px-4 sm:px-6 py-4">
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between mx-10">
             <div className="flex items-center space-x-4 sm:space-x-6 header-logo">
               <Image src="/logo.png" alt="logo" width={100} height={100} />
             </div>
-            <div className="hidden md:flex flex-1 max-w-md lg:mx-8 header-search ">
-              {/* <a
-              href="/about"
-              className="hidden sm:block text-white hover:text-blue-200 transition-all duration-300 text-shadow hover:scale-105 transform"
-            >
-              About us
-            </a> */}
+            <div className="hidden md:flex flex-1 max-w-md lg:mx-8 header-search items-center">
+              <a
+                href="/about"
+                className="hidden sm:block text-white hover:text-blue-200 transition-all duration-300 text-shadow hover:scale-105 transform min-w-[100px] font-medium"
+              >
+                About us
+              </a>
               <div className="relative w-full group">
                 <button
                   onClick={handleSearch}
@@ -101,11 +101,17 @@ export function Header() {
               <div className="relative group">
                 <button
                   onClick={() => setLanguage(language === "EN" ? "MN" : "EN")}
-                  className="px-3 sm:px-4 py-2 bg-white/90 backdrop-blur-sm text-gray-700 rounded-lg hover:bg-white transition-all duration-300 flex items-center space-x-1 sm:space-x-2 text-sm sm:text-base shadow-lg hover:shadow-xl"
+                  className="w-[95px] h-[42px] bg-white/30 backdrop-blur-[10px] text-white rounded-[8px] border-[0.24px] border-white hover:bg-white/20 transition-all duration-300 flex items-center justify-center gap-[10px] text-sm font-medium shadow-lg hover:shadow-xl"
+                  style={{
+                    paddingTop: "10px",
+                    paddingRight: "24px",
+                    paddingBottom: "10px",
+                    paddingLeft: "24px",
+                  }}
                 >
                   <span>{language}</span>
                   <svg
-                    className="w-3 h-3 sm:w-4 sm:h-4 transition-transform duration-300 group-hover:rotate-180"
+                    className="w-4 h-4 transition-transform duration-300 group-hover:rotate-180"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -215,23 +221,38 @@ export function Header() {
             Mongolia
           </h3>
         </div>
+
+        <div className="absolute bottom-0 left-0 right-0 z-20">
+          <div className="bg-[#E8EFFF] py-6">
+            <div className="px-4 sm:px-6">
+              <div className="flex flex-wrap justify-center gap-1 sm:gap-2">
+                {categories.map((category) => (
+                  <button
+                    key={category}
+                    onClick={() => setSelectedCategory(category)}
+                    className={cn(
+                      "px-4 py-3 rounded-lg text-sm sm:text-base font-medium transition-all duration-300 shadow-sm",
+                      selectedCategory === category
+                        ? "bg-white text-blue-600 border-b-4 border-blue-600"
+                        : "bg-white text-gray-700 hover:bg-gray-50",
+                    )}
+                  >
+                    {category}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div className="position-absolute z-10 top-[90%] bottom-0 left-0 right-0 px-4 sm:px-6 pм-4">
-        <div className="flex flex-wrap justify-center gap-2 sm:gap-4">
-          {categories.map((category) => (
-            <button
-              key={category}
-              onClick={() => setSelectedCategory(category)}
-              className={cn(
-                "px-4 py-3 rounded-lg text-sm sm:text-base font-medium transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl",
-                selectedCategory === category
-                  ? "bg-blue-500 text-white border-b-4 border-blue-600"
-                  : "bg-white text-gray-700 hover:bg-gray-50",
-              )}
-            >
-              {category}
-            </button>
-          ))}
+
+      <div className="bg-[#E8EFFF] py-4">
+        <div className="px-4 sm:px-6">
+          <div className="flex items-center text-sm">
+            <span className="text-gray-700">Home</span>
+            <span className="mx-2 text-gray-700">&lt;</span>
+            <span className="text-blue-600 font-medium">Destinations</span>
+          </div>
         </div>
       </div>
     </div>

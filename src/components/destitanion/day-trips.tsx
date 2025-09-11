@@ -2,13 +2,13 @@ import Image from "next/image";
 
 export function DayTrips() {
   const destinations = [
-    { name: "Khogno Tarna NP", image: "/khongoo.png", size: "medium" },
-    { name: "Khustai Nuruu NP", image: "/khastai.png", size: "wide" },
-    { name: "Chinggis Khaanii Khuree", image: "/chigis.png", size: "medium" },
+    { name: "Khogno Tarna NP", image: "/aglag.png", size: "medium" },
+    { name: "Khustai Nuruu NP", image: "/khustai.png", size: "wide" },
+    { name: "Chinggis Khaanii Khuree", image: "/chinigs.png", size: "medium" },
     { name: "Terelj NP", image: "/terelj.png", size: "wide" },
     {
       name: "Genghis Khan Statue Complex",
-      image: "/chingiskhan.png",
+      image: "/khuree.png",
       size: "wide",
     },
   ];
