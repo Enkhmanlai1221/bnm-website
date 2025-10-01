@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Custom animations for header */
+/* Apple-style animations */
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -57,7 +57,40 @@
   }
 }
 
-/* Header animations */
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideInFromTop {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes backdropBlur {
+  from {
+    backdrop-filter: blur(0px);
+    background-color: rgba(255, 255, 255, 0);
+  }
+  to {
+    backdrop-filter: blur(20px);
+    background-color: rgba(255, 255, 255, 0.95);
+  }
+}
+
+/* Apple-style header animations */
 .header-logo {
   animation: slideInLeft 1s ease-out;
 }
@@ -76,6 +109,109 @@
 
 .header-categories {
   animation: fadeInUp 1s ease-out 1.2s both;
+}
+
+/* Apple-style navigation animations */
+.nav-link {
+  position: relative;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: currentColor;
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* Apple-style button animations */
+.apple-button {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.apple-button::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 0.3s ease;
+}
+
+.apple-button:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+/* Apple-style search animations */
+.apple-search {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.apple-search:focus {
+  transform: scale(1.02);
+}
+
+/* Mobile menu animations */
+.mobile-menu-enter {
+  animation: slideInFromTop 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Glassmorphism effect */
+.glass-effect {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.glass-effect-dark {
+  background: rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Dark header specific styles */
+.dark-header {
+  background: rgba(17, 24, 39, 0.95);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(55, 65, 81, 0.5);
+}
+
+.dark-header .nav-link {
+  color: #f3f4f6;
+}
+
+.dark-header .nav-link:hover {
+  color: #60a5fa;
+}
+
+.dark-header .search-input {
+  background: rgba(31, 41, 55, 1);
+  border: 1px solid rgba(75, 85, 99, 1);
+  color: #f3f4f6;
+}
+
+.dark-header .search-input::placeholder {
+  color: #9ca3af;
+}
+
+.dark-header .search-input:focus {
+  background: rgba(55, 65, 81, 1);
+  border-color: #3b82f6;
 }
 
 /* Fade in up animation */

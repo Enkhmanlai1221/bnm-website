@@ -6,7 +6,7 @@ const Footer = () => {
   return (
     <footer className="bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 text-white">
       <div className="bg-[#DEEDFF] text-gray-800 py-16">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-24">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
             <div className="lg:col-span-2 space-y-6">
               <div>
