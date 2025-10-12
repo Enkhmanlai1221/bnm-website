@@ -262,27 +262,6 @@ export default function HomeInfoPage() {
     },
   ];
 
-  const recommendedItems = [
-    {
-      id: 1,
-      image: "/HOME/RECOMMENDED1.png",
-      title: "Recommended",
-      size: "medium",
-    },
-    {
-      id: 2,
-      image: "/HOME/RECOMMENDED2.png",
-      title: "Recommended",
-      size: "medium",
-    },
-    {
-      id: 3,
-      image: "/HOME/RECOMMENDED3.png",
-      title: "Recommended",
-      size: "medium",
-    },
-  ];
-
   const getCardInformationClasses = (size: string) => {
     switch (size) {
       case "wide":
@@ -386,7 +365,9 @@ export default function HomeInfoPage() {
       <div className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900">Information</h2>
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              Information
+            </h2>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 auto-rows-[18rem]">
             {information.map((destination, index) => (
@@ -461,7 +442,7 @@ export default function HomeInfoPage() {
       <div className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900">Events</h2>
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Events</h2>
           </div>
 
           <div className="flex flex-col items-center space-y-8">
@@ -604,67 +585,64 @@ export default function HomeInfoPage() {
           </div>
         </div>
       </div>
-      <div className="py-20" style={{ backgroundColor: "#EEF2FF" }}>
+      <div className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
               Recommended Tours
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {recommendedTours.map((tour) => (
               <div
                 key={tour.id}
-                className="bg-white rounded-3xl shadow-[0_15px_35px_rgba(0,0,0,0.08)] overflow-hidden"
+                className="bg-white rounded-2xl overflow-hidden duration-300"
               >
-                <div className="relative h-64">
+                <div className="relative h-64 overflow-hidden">
                   <Image
                     src={tour.image}
                     alt={tour.title}
                     fill
-                    className="object-cover"
+                    className="object-cover group-hover:scale-105 transition-transform duration-300"
                   />
-                </div>
 
-                <div className="p-8">
-                  <h3 className="text-2xl font-semibold text-gray-900 mb-4">
+                  <div className="absolute top-3 right-3">
+                    <button className="bg-white/80 hover:bg-white rounded-full p-2 transition-colors duration-200">
+                      <svg
+                        className="w-5 h-5 text-gray-600"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                        />
+                      </svg>
+                    </button>
+                  </div>
+                  <div className="absolute bottom-3 left-1/2 transform -translate-x-1/2 flex space-x-1">
+                    <div className="w-2 h-2 bg-white rounded-full"></div>
+                    <div className="w-2 h-2 bg-white/50 rounded-full"></div>
+                    <div className="w-2 h-2 bg-white/50 rounded-full"></div>
+                    <div className="w-2 h-2 bg-white/50 rounded-full"></div>
+                  </div>
+                </div>
+                <div className="p-1 mt-1">
+                  <h3 className="font-bold text-gray-900 text-md mb-1 line-clamp-2">
                     {tour.title}
                   </h3>
-
-                  <div className="space-y-3">
-                    <div className="flex items-center gap-3 text-gray-700">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 24 24"
-                        fill="#2563EB"
-                        className="w-5 h-5"
-                        aria-hidden
-                      >
-                        <path d="M6 2a1 1 0 0 1 1 1v1h10V3a1 1 0 1 1 2 0v1h1a2 2 0 0 1 2 2v13a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h1V3a1 1 0 1 1 2 0v1Zm15 6H3v11h18V8Z" />
-                      </svg>
-                      <span className="text-sm">
-                        <span className="text-gray-800 font-medium">
-                          Duration:
-                        </span>{" "}
-                        {tour.durationDays} days, {tour.nights}nights
-                      </span>
-                    </div>
-
-                    <div className="flex items-center gap-3 text-gray-700">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 24 24"
-                        fill="#2563EB"
-                        className="w-5 h-5"
-                        aria-hidden
-                      >
-                        <path d="M12 1a1 1 0 0 1 1 1v1.055c1.85.174 3.51.89 4.744 1.987 1.375 1.22 2.206 2.892 2.206 4.858h-2c0-1.347-.502-2.42-1.441-3.259-.81-.716-1.965-1.199-3.509-1.37V12h2.5a1 1 0 1 1 0 2H13v1.945c1.787.176 3.168.745 4.097 1.579.98.881 1.403 1.98 1.403 3.476h-2c0-1.016-.29-1.7-.873-2.217-.652-.579-1.766-1.053-3.627-1.214V14h-2.5a1 1 0 1 1 0-2H11V5.269C9.3 5.437 8.16 5.93 7.396 6.621 6.52 7.417 6 8.506 6 9.9H4c0-1.962.768-3.626 2.148-4.846C7.466 3.98 9.16 3.26 11 3.087V2a1 1 0 0 1 1-1Z" />
-                      </svg>
-                      <span className="text-sm">
-                        <span className="text-gray-800 font-medium">
-                          Starting from:
-                        </span>{" "}
+                  <div className="flex items-center mb-3">
+                    <span className="text-gray-500 text-sm">
+                      6 days 5 nights
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <span className="font-bold text-gray-900 text-lg">
                         ${tour.startingFromUsd}
                       </span>
                     </div>

@@ -1,13 +1,13 @@
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
 
-export default function PrivateLayout({
+export default function PublicLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <div className="position-relative overflow-hidden  flex flex-col min-h-screen bg-[#E8EFFF]">
+    <div className="position-relative overflow-hidden flex flex-col min-h-screen">
       <Header />
       <main className="flex-grow">{children}</main>
       <Footer />

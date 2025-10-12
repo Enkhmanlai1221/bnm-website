@@ -10,8 +10,8 @@ import { MantineProvider } from "@mantine/core";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: `BNM website`,
-  description: `BNM website`,
+  title: `Brave new mongolia`,
+  description: `Mongolian tourism website`,
 };
 
 export default function RootLayout({
@@ -21,6 +21,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link rel="Brave new mongolia logo" href="/round.png" />
+        <meta
+          name="viewport"
+          content="minimum-scale=1, initial-scale=1, width=device-width, user-scalable=no"
+        />
+      </head>
       <body className={inter.className}>
         <NuqsAdapter>
           <ReduxProvider>
