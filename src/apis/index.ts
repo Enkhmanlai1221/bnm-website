@@ -1,1 +1,1 @@
-export * as addressApi from "./address";
+export * as destinationApi from "./destination";

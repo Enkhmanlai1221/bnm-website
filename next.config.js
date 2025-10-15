@@ -3,26 +3,10 @@
 const isDevelopment = process.env.NODE_ENV !== "production";
 const rewritesConfig = isDevelopment
   ? [
-      // {
-      //   source: "/:path*/aut/:path*",
-      //   destination: `${process.env.NEXT_PUBLIC_AUTH_HOST}/:path*`,
-      // },
-      // {
-      //   source: "/:path*/azd/:path*",
-      //   destination: `${process.env.NEXT_PUBLIC_AZOD_HOST}/:path*`,
-      // },
-      // {
-      //   source: "/:path*/mdi/:path*",
-      //   destination: `${process.env.NEXT_PUBLIC_MEDIA_HOST}/:path*`,
-      // },
-      // {
-      //   source: "/:path*/usr/:path*",
-      //   destination: `${process.env.NEXT_PUBLIC_USER_HOST}/:path*`,
-      // },
-      // {
-      //   source: "/rest/:path*",
-      //   destination: `${process.env.NEXT_PUBLIC_DEV_API_HOST}/:path*`,
-      // },
+      {
+        source: "/:path*/aut/:path*",
+        destination: `${process.env.NEXT_PUBLIC_LOCAL_API_HOST}/:path*`,
+      },
     ]
   : [];
 

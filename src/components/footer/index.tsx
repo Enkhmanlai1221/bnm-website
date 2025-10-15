@@ -1,64 +1,70 @@
 "use client";
 
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 const Footer = () => {
+  const pathname = usePathname();
+  const isLoginPage = pathname === "/login";
+
   return (
     <footer className="bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 text-white">
-      <div className="bg-[#DEEDFF] text-gray-800 py-16">
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 items-center max-w-7xl mx-auto">
-          <div className="lg:col-span-2 space-y-6">
-            <div>
-              <h2 className="text-2xl font-bold text-gray-800 mb-4">
-                Subscribe to our Newsletter!
-              </h2>
-            </div>
+      {!isLoginPage && (
+        <div className="bg-[#DEEDFF] text-gray-800 py-16">
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 items-center max-w-7xl mx-auto">
+            <div className="lg:col-span-2 space-y-6">
+              <div>
+                <h2 className="text-2xl font-bold text-gray-800 mb-4">
+                  Subscribe to our Newsletter!
+                </h2>
+              </div>
 
-            <div className="flex flex-col sm:flex-row gap-4">
-              <input
-                type="email"
-                placeholder="Email Here..."
-                className="flex-1 px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-800"
-              />
-              <button className="px-8 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-300 font-semibold">
-                SUBSCCRIBE
-              </button>
-            </div>
-            <p className="text-gray-700 leading-relaxed text-md">
-              Uncover the Wonders of Mongolia! Sign up for our exclusive
-              newsletter, and embark on a journey filled with captivating
-              Destination highlights, intriguing Event updates, deep dives into
-              Nomadic Culture, and fascinating nuggets of History. Stay
-              connected with the heart of Mongolia - your gateway to a world of
-              enriching experiences. Don't miss out - subscribe now for a
-              regular dose of Mongolian magic!
-            </p>
-            <div className="space-y-2 text-gray-700">
-              <p className="font-medium">Phone: +976 8001-4904</p>
-              <p className="font-medium">
-                Email: BraveNewMongoliaTours@gmail.com
+              <div className="flex flex-col sm:flex-row gap-4">
+                <input
+                  type="email"
+                  placeholder="Email Here..."
+                  className="flex-1 px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-800"
+                />
+                <button className="px-8 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-300 font-semibold">
+                  SUBSCCRIBE
+                </button>
+              </div>
+              <p className="text-gray-700 leading-relaxed text-md">
+                Uncover the Wonders of Mongolia! Sign up for our exclusive
+                newsletter, and embark on a journey filled with captivating
+                Destination highlights, intriguing Event updates, deep dives
+                into Nomadic Culture, and fascinating nuggets of History. Stay
+                connected with the heart of Mongolia - your gateway to a world
+                of enriching experiences. Don't miss out - subscribe now for a
+                regular dose of Mongolian magic!
               </p>
+              <div className="space-y-2 text-gray-700">
+                <p className="font-medium">Phone: +976 8001-4904</p>
+                <p className="font-medium">
+                  Email: BraveNewMongoliaTours@gmail.com
+                </p>
+              </div>
             </div>
-          </div>
 
-          <div className="flex items-center space-y-6">
-            <Image
-              src="/anar.png"
-              alt="Mongolian Character"
-              width={240}
-              height={240}
-              className="object-contain"
-            />
-            <Image
-              src="/whatsapp.png"
-              alt="WhatsApp QR Code"
-              width={290}
-              height={290}
-              className="mx-auto"
-            />
+            <div className="flex items-center space-y-6">
+              <Image
+                src="/anar.png"
+                alt="Mongolian Character"
+                width={240}
+                height={240}
+                className="object-contain"
+              />
+              <Image
+                src="/whatsapp.png"
+                alt="WhatsApp QR Code"
+                width={290}
+                height={290}
+                className="mx-auto"
+              />
+            </div>
           </div>
         </div>
-      </div>
+      )}
 
       {/* <div className="bg-[#E8EFFF] py-28">
         <div className="container mx-auto px-4">
@@ -143,14 +149,8 @@ const Footer = () => {
                   alt="BNM Logo"
                   width={160}
                   height={160}
-                  // className="rounded-full ring-2 ring-blue-400/30"
                 />
-                {/* <div className="absolute -top-1 -right-1 w-4 h-4 bg-green-500 rounded-full animate-pulse"></div> */}
               </div>
-              {/* <div>
-                <h2 className="text-2xl font-bold text-white">BNM</h2>
-                <p className="text-blue-300 font-medium">Brave New Mongolia</p>
-              </div> */}
             </div>
 
             <p className="text-gray-300 leading-relaxed max-w-md">

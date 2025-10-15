@@ -1,5 +1,9 @@
 "use client";
+import { destinationApi } from "@/apis";
+import { IBeautifulPlace } from "@/interfaces/beautiful-place";
+import { IResult } from "@/interfaces/result";
 import Image from "next/image";
+import useSWR from "swr";
 
 export default function DestinationPage() {
   const dayTrips = [
@@ -220,6 +224,20 @@ export default function DestinationPage() {
         return "h-72";
     }
   };
+
+  const { data: dayTripsData, mutate } = useSWR<IResult<IBeautifulPlace>>(
+    `swr.destination.dayTrips`,
+    () =>
+      destinationApi.list({
+        page: 1,
+        limit: 100,
+        type: "DESTINATIONS",
+      }),
+    {
+      revalidateOnFocus: false,
+    },
+  );
+
   return (
     <div className="min-h-screen">
       <div className="py-16">
@@ -227,6 +245,7 @@ export default function DestinationPage() {
           <div className="text-start mb-6">
             <h2 className="text-4xl font-bold text-gray-900 mb-0">Day trips</h2>
           </div>
+          20
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 auto-rows-[18rem] gap-4">
             {dayTrips.map((destination, index) => (
               <div

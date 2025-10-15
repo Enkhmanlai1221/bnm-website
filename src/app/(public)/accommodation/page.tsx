@@ -1,4 +1,10 @@
+"use client";
+
+import { destinationApi } from "@/apis";
+import { BeautifulPlace } from "@/models/beautiful-place";
 import Image from "next/image";
+import Link from "next/link";
+import useSWR from "swr";
 
 export default function AccommodationPage() {
   const dayTrips = [
@@ -375,13 +381,13 @@ export default function AccommodationPage() {
 
   const getCardInformationClasses = (size: string) => {
     switch (size) {
-      case "wide":
+      case "WIDE":
         return "col-span-2 row-span-1";
-      case "tall":
+      case "TALL":
         return "col-span-1 row-span-2";
-      case "medium":
+      case "MEDIUM":
         return "col-span-1 row-span-1";
-      case "large":
+      case "LARGE":
         return "col-span-2 row-span-2";
       default:
         return "col-span-1 row-span-1";
@@ -390,18 +396,36 @@ export default function AccommodationPage() {
 
   const getCardInformationHeight = (size: string) => {
     switch (size) {
-      case "wide":
+      case "WIDE":
         return "h-72";
-      case "tall":
-        return "h-[36rem]";
-      case "medium":
+      case "TALL":
+        return "h-[37rem]";
+      case "MEDIUM":
         return "h-72";
-      case "large":
+      case "LARGE":
         return "h-[36rem]";
       default:
         return "h-72";
     }
   };
+
+  const {
+    data: DayTripsData,
+    mutate,
+    isLoading,
+  } = useSWR<any>(
+    `swr.destination.accommodations`,
+    () =>
+      destinationApi.list({
+        page: 1,
+        limit: 100,
+        type: "ACCOMMODATION",
+        reference: "68ee93c4b88440a78c3d94e0",
+      }),
+    {
+      revalidateOnFocus: false,
+    },
+  );
 
   return (
     <div className="min-h-screen">
@@ -411,20 +435,29 @@ export default function AccommodationPage() {
             <h2 className="text-4xl font-bold text-gray-900 mb-0">Day trips</h2>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 auto-rows-[18rem] gap-4">
-            {dayTrips.map((destination, index) => (
-              <div
-                key={destination.id}
-                className={`group relative overflow-hidden ${getCardInformationClasses(destination.size)} ${getCardInformationHeight(destination.size)} rounded-2xl`}
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                <Image
-                  src={destination.image}
-                  alt={destination.name}
-                  fill
-                  className="duration-700 group-hover:scale-105"
-                />
+            {isLoading ? (
+              <div className="flex items-center justify-center">
+                <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-gray-900"></div>
               </div>
-            ))}
+            ) : (
+              DayTripsData?.rows?.map(
+                (destination: BeautifulPlace, index: number) => (
+                  <Link
+                    key={destination._id}
+                    href={`/accommodation/${destination._id}`}
+                    className={`group relative overflow-hidden ${getCardInformationClasses(destination.imagePosition)} ${getCardInformationHeight(destination.imagePosition)} rounded-2xl`}
+                    style={{ animationDelay: `${index * 0.1}s` }}
+                  >
+                    <Image
+                      src={destination.mainImage?.url}
+                      alt={destination.name}
+                      fill
+                      className="duration-700 group-hover:scale-105"
+                    />
+                  </Link>
+                ),
+              )
+            )}
           </div>
         </div>
       </div>
@@ -437,8 +470,9 @@ export default function AccommodationPage() {
             </h2>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 auto-rows-[18rem] gap-4">
-            {CentralMongolia.map((destination, index) => (
-              <div
+            {CentralMongolia.map((destination, index: number) => (
+              <Link
+                href={`/accommodation/${destination.id}`}
                 key={destination.id}
                 className={`group relative overflow-hidden ${getCardInformationClasses(destination.size)} ${getCardInformationHeight(destination.size)} rounded-2xl`}
                 style={{ animationDelay: `${index * 0.1}s` }}
@@ -449,7 +483,7 @@ export default function AccommodationPage() {
                   fill
                   className="duration-700 group-hover:scale-105"
                 />
-              </div>
+              </Link>
             ))}
           </div>
         </div>

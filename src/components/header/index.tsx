@@ -49,8 +49,8 @@ export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
-  const isHomePage = pathname === "/";
-  const showDarkHeader = !isHomePage || isScrolled;
+  const isLoginPage = pathname === "/login";
+  const showDarkHeader = isScrolled;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -72,7 +72,6 @@ export function Header() {
       >
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-14">
-            {/* Logo - Always visible */}
             <Link href="/" className="flex-shrink-0">
               <div className="flex flex-nowrap items-center gap-2">
                 <p
@@ -93,7 +92,6 @@ export function Header() {
               </div>
             </Link>
 
-            {/* Desktop Navigation - Hidden on mobile */}
             <div className="hidden lg:flex items-center gap-1">
               {navigationItems?.map((item) => (
                 <Link
@@ -119,7 +117,6 @@ export function Header() {
               ))}
             </div>
 
-            {/* Right side buttons */}
             <div className="flex items-center gap-2 sm:gap-3">
               <button
                 onClick={() => setLanguage(language === "EN" ? "MN" : "EN")}
@@ -173,7 +170,6 @@ export function Header() {
           </div>
         </div>
 
-        {/* Mobile Menu */}
         <div
           className={cn(
             "lg:hidden overflow-hidden transition-all duration-300 ease-in-out",
@@ -220,7 +216,7 @@ export function Header() {
           </div>
         </div>
       </nav>
-      {!id && (
+      {!id && !isLoginPage && (
         <div className="relative h-[50vh] overflow-hidden">
           <div
             className="absolute inset-0 bg-cover bg-center bg-no-repeat"

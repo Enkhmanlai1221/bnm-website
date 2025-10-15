@@ -40,7 +40,7 @@ export function Carosuel({
 
   if (!images || images.length === 0) {
     return (
-      <div className="flex items-center justify-center h-[50vh] bg-gray-200 rounded-lg">
+      <div className="flex items-center justify-center h-[50vh] rounded-lg">
         <p className="text-gray-500">No images available</p>
       </div>
     );
@@ -48,14 +48,13 @@ export function Carosuel({
 
   return (
     <div className="w-full space-y-4">
-      <div className="relative h-[50vh] overflow-hidden rounded-lg bg-gray-900 group">
+      <div className="relative h-[50vh] overflow-hidden rounded-lg group">
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
             backgroundImage: `url(${images[currentIndex]})`,
           }}
         />
-
         {images.length > 1 && (
           <>
             <button
@@ -80,7 +79,7 @@ export function Carosuel({
 
             <button
               onClick={goToNext}
-              className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+              className="absolute right-4 top-1/2 -translate-y-1/2 hover:bg-black/70 text-white p-3 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
               aria-label="Next image"
             >
               <svg
@@ -107,9 +106,7 @@ export function Carosuel({
                 key={index}
                 onClick={() => goToSlide(index)}
                 className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                  index === currentIndex
-                    ? "bg-white w-8"
-                    : "bg-white/50 hover:bg-white/75"
+                  index === currentIndex ? "w-8" : "hover:bg-white/75"
                 }`}
                 aria-label={`Go to slide ${index + 1}`}
               />
