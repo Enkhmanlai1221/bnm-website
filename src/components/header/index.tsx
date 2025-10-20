@@ -3,7 +3,7 @@
 import { cn } from "@/utils";
 import Image from "next/image";
 import Link from "next/link";
-import { useParams, usePathname } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 interface NavigationItem {
@@ -44,12 +44,9 @@ const navigationItems: NavigationItem[] = [
 
 export function Header() {
   const pathname = usePathname();
-  const { id } = useParams();
   const [language, setLanguage] = useState("EN");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-
-  const isLoginPage = pathname === "/login";
   const showDarkHeader = isScrolled;
 
   useEffect(() => {
@@ -216,7 +213,7 @@ export function Header() {
           </div>
         </div>
       </nav>
-      {!id && !isLoginPage && (
+      {pathname === "/" && (
         <div className="relative h-[50vh] overflow-hidden">
           <div
             className="absolute inset-0 bg-cover bg-center bg-no-repeat"

@@ -1,9 +1,9 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 
 export default function HomeInfoPage() {
-  // Destinations data
   const destinations = [
     {
       id: 1,
@@ -301,9 +301,10 @@ export default function HomeInfoPage() {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 auto-rows-[18rem] ">
             {destinations.map((destination, index) => (
-              <div
+              <Link
+                href={`/destination`}
                 key={destination.id}
-                className={`group relative overflow-hidden ${getCardInformationClasses(destination.size)} ${getCardInformationHeight(destination.size)}`}
+                className={`group relative overflow-hidden ${getCardInformationClasses(destination.size)} ${getCardInformationHeight(destination.size)} rounded-2xl`}
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <Image
@@ -312,7 +313,7 @@ export default function HomeInfoPage() {
                   fill
                   className="duration-700 group-hover:scale-105"
                 />
-              </div>
+              </Link>
             ))}
           </div>
         </div>
@@ -333,20 +334,13 @@ export default function HomeInfoPage() {
             >
               Ulaanbaatar
             </h2>
-            {/* <div className="w-30 h-30">
-              <Image
-                src={"/HOME/ULAANBAATAR.png"}
-                alt={"Ulaanbaatar"}
-                fill
-                className="w-20 h-20"
-              />
-            </div> */}
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 auto-rows-[18rem] gap-4">
             {ulaanbaatarCards.map((destination, index) => (
-              <div
+              <Link
                 key={destination.id}
+                href={`/visit-ulaanbaatar`}
                 className={`group relative overflow-hidden ${getCardInformationClasses(destination.size)} ${getCardInformationHeight(destination.size)} rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300`}
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
@@ -356,7 +350,7 @@ export default function HomeInfoPage() {
                   fill
                   className="duration-700 group-hover:scale-105"
                 />
-              </div>
+              </Link>
             ))}
           </div>
         </div>

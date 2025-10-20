@@ -8,7 +8,7 @@ export interface JoiError {
   [key: string]: {
     type: string;
     message: string;
-  }
+  };
 }
 
 export class HttpHandler {
@@ -22,7 +22,7 @@ export class HttpHandler {
     const { code, error, message, ...rest } = errorMessage || {};
     this.statusCode = statusCode;
     this.code = code;
-    
+
     if (code === "JoiValidationError") {
       try {
         this.error = JSON.parse(error as string);
@@ -47,14 +47,14 @@ export class HttpHandler {
         data = {
           message: await res.text(),
           code: "CLIENT_ERROR",
-          error: "ClientError"
-        }
+          error: "ClientError",
+        };
       }
     } catch (err) {
       data = {
         message: "Internet connection error!",
         code: "NETWORK_ERROR",
-        error: "NetworkError"
+        error: "NetworkError",
       };
     }
 

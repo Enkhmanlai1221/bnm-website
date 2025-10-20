@@ -1,35 +1,42 @@
+import { DynamicBreadcrumb } from "@/components/breadcrumb";
 import Image from "next/image";
+import Link from "next/link";
+
+const breadcrumbItems = [
+  { label: "Home", href: "/" },
+  { label: "Visit Ulaanbaatar", href: "/visit-ulaanbaatar" },
+];
 
 export default function VisitUlaanbaatarPage() {
   const places = [
     {
       id: 1,
       image: "/VISIT_UB/VISIT1.png",
-      title: "Recommended",
+      type: "PLACES_TO_VISIT",
       size: "wide",
     },
     {
       id: 2,
       image: "/VISIT_UB/VISIT2.png",
-      title: "Recommended",
+      type: "STATUES_MONUMENTS",
       size: "wide",
     },
     {
       id: 3,
       image: "/VISIT_UB/VISIT3.png",
-      title: "Recommended",
+      type: "MUSEUMS",
       size: "medium",
     },
     {
       id: 4,
       image: "/VISIT_UB/VISIT4.png",
-      title: "Recommended",
+      type: "HISTORY_CAPITAL",
       size: "medium",
     },
     {
       id: 5,
       image: "/VISIT_UB/VISIT5.png",
-      title: "Recommended",
+      type: "INFORMATION_CENTERS",
       size: "medium",
     },
   ];
@@ -60,22 +67,24 @@ export default function VisitUlaanbaatarPage() {
   };
   return (
     <div className="min-h-screen">
-      <div className="py-16 ">
+      <div className="py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <DynamicBreadcrumb items={breadcrumbItems} />
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-6 lg:grid-cols-6 auto-rows-[18rem] gap-4">
             {places.map((place, index) => (
-              <div
+              <Link
                 key={place.id}
+                href={`/visit-ulaanbaatar/category/${place.type}`}
                 className={`group relative overflow-hidden ${getCardInformationClasses(place.size)} ${getCardInformationHeight(place.size)}`}
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <Image
                   src={place.image}
-                  alt={place.title}
+                  alt={place.type}
                   fill
                   className="duration-700 group-hover:scale-105"
                 />
-              </div>
+              </Link>
             ))}
           </div>
         </div>
@@ -112,11 +121,12 @@ export default function VisitUlaanbaatarPage() {
               </div>
             </div>
             <div className="relative w-full h-80 lg:h-96 rounded-3xl overflow-hidden">
-              <Image
-                src="/VISIT_UB/VIDEO.png"
-                alt="Virtual City Tour Video"
-                fill
-                className="object-cover"
+              <iframe
+                src="https://www.youtube.com/embed/cPtSIPk2ETo?autoplay=1&mute=1&loop=1&playlist=cPtSIPk2ETo"
+                title="Virtual City Tour"
+                className="w-full h-full object-cover"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
               />
             </div>
           </div>

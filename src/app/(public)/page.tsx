@@ -14,7 +14,7 @@ export default function HomePage() {
   const pathname = usePathname();
 
   return (
-    <div className="pt-16">
+    <div className="mt-6">
       <div className="min-h-screen">
         {pathname === "/" && <HomeInfoPage />}
         {pathname === "/visit-ulaanbaatar" && <VisitUlaanbaatarPage />}

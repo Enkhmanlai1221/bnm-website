@@ -34,12 +34,6 @@ export default function AccommodationDetailPage() {
     <div className="min-h-screen">
       <div className="mt-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mb-6">
-            <button className="text-gray-600 hover:text-gray-800 flex items-center">
-              <span className="tex-lg">&lt;</span>
-              <span className="ml-1">Back</span>
-            </button>
-          </div>
           <AccommodationDetailContent feature={accommodation?.features} />
         </div>
       </div>

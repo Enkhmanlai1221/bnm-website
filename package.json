@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@heroicons/react": "^2.2.0",
     "@mantine/core": "^7.17.2",
     "@mantine/hooks": "^7.16.2",
     "@reduxjs/toolkit": "^2.2.7",

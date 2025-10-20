@@ -18,7 +18,8 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "cSpell.words": [
-    "Areaspline"
+    "Areaspline",
+    "Citymapper"
   ],
   "[json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
