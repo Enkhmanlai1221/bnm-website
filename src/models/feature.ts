@@ -16,6 +16,7 @@ export class Feature implements IFeature {
   videos: string;
   __v: string;
   _id: string;
+  url: string;
   constructor({
     beautifulPlace,
     createdAt,
@@ -31,6 +32,7 @@ export class Feature implements IFeature {
     videos,
     __v,
     _id,
+    url,
   }: IFeature) {
     this._id = _id;
     this.beautifulPlace = beautifulPlace;
@@ -46,6 +48,7 @@ export class Feature implements IFeature {
     this.updatedAt = updatedAt;
     this.videos = videos;
     this.__v = __v;
+    this.url = url;
   }
 
   static fromJson(json: any) {

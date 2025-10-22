@@ -36,7 +36,7 @@ export default function DynamicBreadcrumb({
             {index > 0 && (separator || defaultSeparator)}
             {item.isActive ? (
               <span
-                className="font-medium text-2xl text-gray-900"
+                className="font-medium text-sm text-gray-900"
                 aria-current="page"
               >
                 {item.label}
@@ -44,7 +44,7 @@ export default function DynamicBreadcrumb({
             ) : (
               <Link
                 href={item.href}
-                className="hover:text-gray-700 text-lg transition-colors duration-200"
+                className="hover:text-gray-700 text-sm transition-colors duration-200"
               >
                 {item.label}
               </Link>

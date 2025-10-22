@@ -4,6 +4,12 @@ import { IBeautifulPlace } from "@/interfaces/beautiful-place";
 import { IResult } from "@/interfaces/result";
 import DestinationSection from "@/components/destination-section";
 import useSWR from "swr";
+import { DynamicBreadcrumb } from "@/components/breadcrumb";
+
+const breadcrumbItems = [
+  { label: "Home", href: "/" },
+  { label: "Destinations", href: "/destination" },
+];
 
 export default function DestinationPage() {
   const { data: dayTripsData, mutate: dayTripsMutate } = useSWR<
@@ -100,36 +106,51 @@ export default function DestinationPage() {
 
   return (
     <div className="min-h-screen">
-      <DestinationSection
-        path="/destination"
-        title="Day trips"
-        destinations={dayTripsData?.rows}
-      />
-      <DestinationSection
-        path="/destination"
-        title="Central Mongolia"
-        destinations={CentralMongoliaData?.rows}
-      />
-      <DestinationSection
-        path="/destination"
-        title="Eastern Mongolia"
-        destinations={EasternMongoliaData?.rows}
-      />
-      <DestinationSection
-        path="/destination"
-        title="Western Mongolia"
-        destinations={WesternMongoliaData?.rows}
-      />
-      <DestinationSection
-        path="/destination"
-        title="Southern Mongolia"
-        destinations={SouthernMongoliaData?.rows}
-      />
-      <DestinationSection
-        path="/destination"
-        title="Northern Mongolia"
-        destinations={NorthernMongoliaData?.rows}
-      />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-20">
+        <DynamicBreadcrumb items={breadcrumbItems} />
+      </div>
+      <div className="space-y-12 mb-12">
+        <DestinationSection
+          type={true}
+          limit={6}
+          path="/destination"
+          title="Day trips"
+          destinations={dayTripsData?.rows}
+        />
+        <DestinationSection
+          type={true}
+          limit={6}
+          path="/destination"
+          title="Central Mongolia"
+          destinations={CentralMongoliaData?.rows}
+        />
+        <DestinationSection
+          type={true}
+          limit={5}
+          path="/destination"
+          title="Eastern Mongolia"
+          destinations={EasternMongoliaData?.rows}
+        />
+        <DestinationSection
+          type={true}
+          limit={5}
+          path="/destination"
+          title="Western Mongolia"
+          destinations={WesternMongoliaData?.rows}
+        />
+        <DestinationSection
+          type={true}
+          path="/destination"
+          title="Southern Mongolia"
+          destinations={SouthernMongoliaData?.rows}
+        />
+        <DestinationSection
+          type={true}
+          path="/destination"
+          title="Northern Mongolia"
+          destinations={NorthernMongoliaData?.rows}
+        />
+      </div>
     </div>
   );
 }

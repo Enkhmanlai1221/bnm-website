@@ -46,16 +46,24 @@ export function Header() {
   const pathname = usePathname();
   const [language, setLanguage] = useState("EN");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(pathname !== "/" ? true : false);
   const showDarkHeader = isScrolled;
 
   useEffect(() => {
+    if (pathname !== "/") {
+      setIsScrolled(true);
+      return;
+    }
+
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };
+
+    handleScroll();
+
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [pathname]);
 
   return (
     <>

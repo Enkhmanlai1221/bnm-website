@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState, useEffect } from "react";
+import { ImageSkeleton, LoadingSpinner } from "../loading";
 
 interface CarouselProps {
   images: string[];
@@ -15,6 +16,8 @@ export function Carosuel({
   autoPlayInterval = 5000,
 }: CarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [imageLoading, setImageLoading] = useState<boolean[]>([]);
+  const [mainImageLoading, setMainImageLoading] = useState(true);
 
   useEffect(() => {
     if (!autoPlay || images.length <= 1) return;
@@ -25,6 +28,13 @@ export function Carosuel({
 
     return () => clearInterval(interval);
   }, [autoPlay, autoPlayInterval, images.length]);
+
+  useEffect(() => {
+    if (images && images.length > 0) {
+      setImageLoading(new Array(images.length).fill(true));
+      setMainImageLoading(true);
+    }
+  }, [images]);
 
   const goToPrevious = () => {
     setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
@@ -38,6 +48,18 @@ export function Carosuel({
     setCurrentIndex(index);
   };
 
+  const handleMainImageLoad = () => {
+    setMainImageLoading(false);
+  };
+
+  const handleThumbnailLoad = (index: number) => {
+    setImageLoading((prev) => {
+      const newState = [...prev];
+      newState[index] = false;
+      return newState;
+    });
+  };
+
   if (!images || images.length === 0) {
     return (
       <div className="flex items-center justify-center h-[50vh] rounded-lg">
@@ -49,11 +71,22 @@ export function Carosuel({
   return (
     <div className="w-full space-y-4">
       <div className="relative h-[50vh] overflow-hidden rounded-lg group">
+        {mainImageLoading && <ImageSkeleton className="absolute inset-0" />}
         <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          className={`absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-300 ${
+            mainImageLoading ? "opacity-0" : "opacity-100"
+          }`}
           style={{
             backgroundImage: `url(${images[currentIndex]})`,
           }}
+        />
+        <Image
+          src={images[currentIndex]}
+          alt={`Image ${currentIndex + 1}`}
+          fill
+          className="opacity-0"
+          onLoad={handleMainImageLoad}
+          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 50vw"
         />
         {images.length > 1 && (
           <>
@@ -131,12 +164,18 @@ export function Carosuel({
                   : "ring-1 ring-gray-300"
               }`}
             >
+              {imageLoading[index] && (
+                <ImageSkeleton className="absolute inset-0" />
+              )}
               <Image
                 src={image}
                 alt={`Thumbnail ${index + 1}`}
                 fill
-                className="object-cover"
+                className={`object-cover transition-opacity duration-300 ${
+                  imageLoading[index] ? "opacity-0" : "opacity-100"
+                }`}
                 sizes="(max-width: 768px) 25vw, (max-width: 1024px) 16vw, 12vw"
+                onLoad={() => handleThumbnailLoad(index)}
               />
             </button>
           ))}

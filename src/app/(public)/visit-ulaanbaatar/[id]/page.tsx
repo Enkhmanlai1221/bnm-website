@@ -3,6 +3,7 @@
 import { destinationApi } from "@/apis";
 import { AccommodationDetailContent } from "@/components/accommodation-detail-content";
 import { DynamicBreadcrumb } from "@/components/breadcrumb";
+import { ContentLoading } from "@/components/loading";
 import { IBeautifulPlace } from "@/interfaces/beautiful-place";
 import { useParams } from "next/navigation";
 import useSWR from "swr";
@@ -21,22 +22,18 @@ export default function VisitUlaanbaatarDetailPage() {
   ];
 
   const { data, isLoading } = useSWR<IBeautifulPlace>(
-    `swr.destination.visitUlaanbaatar.${id}`,
+    `swr.destination.visitUlaanbaatar.detail.${id}`,
     () => destinationApi.get(id as string),
   );
 
   if (isLoading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-lg text-gray-600">Loading...</div>
-      </div>
-    );
+    return <ContentLoading />;
   }
 
   if (!data) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="text-lg text-gray-600">Accommodation not found</div>
+        <div className="text-lg text-gray-600">Visit Ulaanbaatar not found</div>
       </div>
     );
   }
@@ -46,13 +43,6 @@ export default function VisitUlaanbaatarDetailPage() {
       <div className="mt-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <DynamicBreadcrumb items={breadcrumbItems} />
-
-          <div className="mb-6">
-            <button className="text-gray-600 hover:text-gray-800 flex items-center">
-              <span className="tex-lg">&lt;</span>
-              <span className="ml-1">Back</span>
-            </button>
-          </div>
           <AccommodationDetailContent feature={data?.features} />
         </div>
       </div>

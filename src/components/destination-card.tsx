@@ -33,15 +33,15 @@ export default function DestinationCard({
 
   return (
     <Link
+      key={destination._id}
       href={`${path}/${destination._id}`}
-      className={`group relative overflow-hidden ${getCardClasses(destination.imagePosition)} rounded-2xl max-h-[37rem]`}
+      className={`group relative overflow-hidden ${getCardClasses(destination.imagePosition)} rounded-2xl min-h-[18rem] max-h-[37rem]`}
     >
       <Image
         src={destination.mainImage?.url}
         alt={destination.name}
         fill
-        className="object-cover duration-700 group-hover:scale-105"
-        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        className="min-h-[18rem] max-h-[37rem] w-full object-cover duration-700 group-hover:scale-105"
       />
       {type && (
         <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">

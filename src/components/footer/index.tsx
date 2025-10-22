@@ -66,81 +66,8 @@ const Footer = () => {
         </div>
       )}
 
-      {/* <div className="bg-[#E8EFFF] py-28">
-        <div className="container mx-auto px-4">
-          <div className="bg-black w-full h-0.5 mb-4"></div>
-          <div className="flex space-x-4">
-            <button
-              onClick={handleBack}
-              className="flex items-center space-x-2 px-6 py-3 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 transition-colors duration-300 shadow-sm"
-            >
-              <svg
-                className="w-5 h-5 text-gray-700"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M15 19l-7-7 7-7"
-                />
-              </svg>
-              <span className="text-gray-700 font-medium">Back</span>
-            </button>
-            <button
-              onClick={handleHome}
-              className="flex items-center space-x-2 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-300 shadow-sm"
-            >
-              <svg
-                className="w-5 h-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
-                />
-              </svg>
-              <span className="font-medium">Home</span>
-            </button>
-            <button
-              onClick={handleDestinations}
-              className="flex items-center space-x-2 px-6 py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors duration-300 shadow-sm"
-            >
-              <svg
-                className="w-5 h-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                />
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                />
-              </svg>
-              <span className="font-medium">Destinations</span>
-            </button>
-          </div>
-        </div>
-      </div> */}
-
-      {/* Main Footer Content */}
       <div className="container mx-auto px-4 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
-          {/* Company Brand Section */}
           <div className="lg:col-span-2 space-y-6">
             <div className="flex items-center space-x-4">
               <div className="relative">
@@ -158,24 +85,17 @@ const Footer = () => {
               team of Mongolians that love nature and traveling.
             </p>
 
-            {/* Contact Information */}
             <div className="space-y-3">
               <div className="flex items-center space-x-3 text-gray-300">
-                <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
-                  <span className="text-sm">📞</span>
-                </div>
+                <span className="text-sm">Phone</span>
                 <span className="font-medium">+976 8625-6868</span>
               </div>
               <div className="flex items-center space-x-3 text-gray-300">
-                <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
-                  <span className="text-sm">✉️</span>
-                </div>
+                <span className="text-sm">Email</span>
                 <span className="font-medium">bnmtours@gmail.com</span>
               </div>
               <div className="flex items-start space-x-3 text-gray-300">
-                <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center mt-1">
-                  <span className="text-sm">📍</span>
-                </div>
+                <span className="text-sm">Location</span>
                 <span className="font-medium text-sm leading-relaxed">
                   17-22, 7-r khoroo, Sukhbaatar District,
                   <br />
@@ -185,7 +105,6 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Quick Links Section */}
           <div className="space-y-6">
             <h3 className="text-xl font-bold text-white border-b-2 border-blue-500 pb-2 inline-block">
               Quick Links
@@ -224,7 +143,6 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Mobile App & Social Section */}
           <div className="space-y-6">
             <h3 className="text-xl font-bold text-white border-b-2 border-blue-500 pb-2 inline-block">
               Get Our App
@@ -237,7 +155,6 @@ const Footer = () => {
                   alt="Download on App Store"
                   width={150}
                   height={80}
-                  // className="w-full h-auto"
                 />
               </a>
 
@@ -247,7 +164,6 @@ const Footer = () => {
                   alt="Get it on Google Play"
                   width={150}
                   height={80}
-                  // className="w-full h-auto"
                 />
               </a>
             </div>
@@ -296,34 +212,11 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* Bottom Copyright Bar */}
       <div className="border-t border-gray-700 bg-gradient-to-r from-slate-800 to-blue-800">
         <div className="container mx-auto px-4 py-6">
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-2 md:space-y-0">
-            <p className="text-gray-300 text-sm">
-              Copyright © 2023 Brave New Mongolia. All rights reserved.
-            </p>
-            <div className="flex space-x-6 text-sm">
-              <a
-                href="#"
-                className="text-gray-400 hover:text-white transition-colors duration-300"
-              >
-                Privacy Policy
-              </a>
-              <a
-                href="#"
-                className="text-gray-400 hover:text-white transition-colors duration-300"
-              >
-                Terms of Service
-              </a>
-              <a
-                href="#"
-                className="text-gray-400 hover:text-white transition-colors duration-300"
-              >
-                Cookie Policy
-              </a>
-            </div>
-          </div>
+          <p className="text-gray-300 text-sm">
+            Copyright © 2023 Brave New Mongolia. All rights reserved.
+          </p>
         </div>
       </div>
     </footer>
