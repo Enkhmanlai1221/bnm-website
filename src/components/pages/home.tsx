@@ -79,7 +79,7 @@ export default function HomeInfoPage() {
       title: "Information",
       image: "/HOME/INFORMATION1.png",
       description: "Learn about the city's heritage",
-      size: "tall",
+      size: "tallcustom",
     },
 
     {
@@ -94,7 +94,7 @@ export default function HomeInfoPage() {
       title: "Information",
       image: "/HOME/INFORMATION3.png",
       description: "Learn about the city's heritage",
-      size: "tall",
+      size: "tallcustom",
     },
     {
       id: 4,
@@ -268,6 +268,8 @@ export default function HomeInfoPage() {
         return "col-span-2 row-span-1";
       case "tall":
         return "col-span-1 row-span-2";
+      case "tallcustom":
+        return "col-span-1 row-span-2";
       case "medium":
         return "col-span-1 row-span-1";
       case "large":
@@ -282,10 +284,12 @@ export default function HomeInfoPage() {
       case "wide":
         return "h-72";
       case "tall":
-        return "h-[36rem]";
+        return "h-[37rem]";
       case "medium":
         return "h-72";
       case "large":
+        return "h-[37rem]";
+      case "tallcustom":
         return "h-[36rem]";
       default:
         return "h-72";
@@ -297,14 +301,14 @@ export default function HomeInfoPage() {
       <div className="py-16 ">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-6">
-            <h2 className="text-3xl font-bold text-gray-900">Destinations</h2>
+            <h2 className="text-4xl font-bold text-gray-900">Destinations</h2>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 auto-rows-[18rem] ">
             {destinations.map((destination, index) => (
               <Link
                 href={`/destination`}
                 key={destination.id}
-                className={`group relative overflow-hidden ${getCardInformationClasses(destination.size)} ${getCardInformationHeight(destination.size)} rounded-2xl`}
+                className={`group relative overflow-hidden ${getCardInformationClasses(destination.size)} ${getCardInformationHeight(destination.size)} rounded-2xl min-h-[18rem] max-h-[37rem]`}
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <Image
@@ -327,13 +331,10 @@ export default function HomeInfoPage() {
         }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2
-              className="text-5xl font-bold text-red-800 mb-4"
-              style={{ fontFamily: "serif" }}
-            >
-              Ulaanbaatar
-            </h2>
+          <div className="text-center">
+            <div className="text-center mb-6">
+              <h2 className="text-4xl font-bold text-gray-900">Ulaanbaatar</h2>
+            </div>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 auto-rows-[18rem] gap-4">
@@ -341,7 +342,7 @@ export default function HomeInfoPage() {
               <Link
                 key={destination.id}
                 href={`/visit-ulaanbaatar`}
-                className={`group relative overflow-hidden ${getCardInformationClasses(destination.size)} ${getCardInformationHeight(destination.size)} rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300`}
+                className={`group relative overflow-hidden ${getCardInformationClasses(destination.size)} ${getCardInformationHeight(destination.size)} rounded-2xl`}
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <Image
@@ -358,8 +359,8 @@ export default function HomeInfoPage() {
 
       <div className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+          <div className="text-center">
+            <h2 className="text-4xl font-bold text-gray-900 mb-6">
               Information
             </h2>
           </div>
@@ -384,10 +385,8 @@ export default function HomeInfoPage() {
 
       <div className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Accommodation
-            </h2>
+          <div className="text-center mb-6">
+            <h2 className="text-4xl font-bold text-gray-900 ">Accommodation</h2>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 auto-rows-[18rem]">
             {accommodationItems.map((destination, index) => (
@@ -410,16 +409,14 @@ export default function HomeInfoPage() {
 
       <div className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Commercial
-            </h2>
+          <div className="text-center mb-6">
+            <h2 className="text-4xl font-bold text-gray-900">Commercial</h2>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 auto-rows-[18rem] gap-4">
             {commercialItems.map((destination, index) => (
               <div
                 key={destination.id}
-                className={`group relative overflow-hidden ${getCardInformationClasses(destination.size)} ${getCardInformationHeight(destination.size)} rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300`}
+                className={`group relative overflow-hidden ${getCardInformationClasses(destination.size)} ${getCardInformationHeight(destination.size)} rounded-2xl`}
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <Image
@@ -435,8 +432,8 @@ export default function HomeInfoPage() {
       </div>
       <div className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Events</h2>
+          <div className="text-center mb-6">
+            <h2 className="text-4xl font-bold text-gray-900">Events</h2>
           </div>
 
           <div className="flex flex-col items-center space-y-8">
@@ -581,8 +578,8 @@ export default function HomeInfoPage() {
       </div>
       <div className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+          <div className="text-center mb-6">
+            <h2 className="text-4xl font-bold text-gray-900">
               Recommended Tours
             </h2>
           </div>

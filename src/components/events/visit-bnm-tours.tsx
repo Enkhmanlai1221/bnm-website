@@ -12,21 +12,20 @@ export function VisitBnmTours() {
     >
       <div className="flex items-center lg:p-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 w-full max-w-7xl mx-auto">
-          <div className="flex gap-4">
+          <div className="flex gap-4 relative">
             <Image
               src="/EVENT/ICON_1.png"
               alt="Visit BNM Tours"
-              width={200}
-              height={200}
-              className="w-[200px] h-[200px] object-contain"
+              fill
+              className="w-[400px] h-[400px] object-contain absolute -top-8 right-[40%]"
             />
-            <Image
+            {/* <Image
               src="/EVENT/ICON_2.png"
               alt="Visit BNM Tours"
               width={200}
               height={200}
               className="w-[200px] h-[200px] object-contain"
-            />
+            /> */}
           </div>
           <div className="flex flex-col justify-center text-white space-y-6">
             <div className="pt-4">

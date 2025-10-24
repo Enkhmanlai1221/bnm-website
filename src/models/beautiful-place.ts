@@ -16,6 +16,7 @@ export class BeautifulPlace implements IBeautifulPlace {
   __v: string;
   _id: string;
   features: IFeature[];
+  reference: any;
   constructor(json: IBeautifulPlace) {
     this.createdAt = json.createdAt;
     this.description = json.description;
@@ -30,6 +31,7 @@ export class BeautifulPlace implements IBeautifulPlace {
     this._id = json._id;
     this.imagePosition = json.imagePosition;
     this.features = json.features;
+    this.reference = json.reference;
   }
 
   static fromJson(json: any) {

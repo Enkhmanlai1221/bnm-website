@@ -3,6 +3,7 @@ import { destinationApi } from "@/apis";
 import { IBeautifulPlace } from "@/interfaces/beautiful-place";
 import { IResult } from "@/interfaces/result";
 import DestinationSection from "@/components/destination-section";
+import { DestinationSkeleton } from "@/components/loading";
 import useSWR from "swr";
 import { DynamicBreadcrumb } from "@/components/breadcrumb";
 
@@ -12,9 +13,11 @@ const breadcrumbItems = [
 ];
 
 export default function DestinationPage() {
-  const { data: dayTripsData, mutate: dayTripsMutate } = useSWR<
-    IResult<IBeautifulPlace>
-  >(
+  const {
+    data: dayTripsData,
+    mutate: dayTripsMutate,
+    isLoading: dayTripsLoading,
+  } = useSWR<IResult<IBeautifulPlace>>(
     `swr.destination.dayTrips`,
     () =>
       destinationApi.list({
@@ -29,9 +32,11 @@ export default function DestinationPage() {
     },
   );
 
-  const { data: CentralMongoliaData, mutate: CentralMongoliaMutate } = useSWR<
-    IResult<IBeautifulPlace>
-  >(
+  const {
+    data: CentralMongoliaData,
+    mutate: CentralMongoliaMutate,
+    isLoading: CentralMongoliaLoading,
+  } = useSWR<IResult<IBeautifulPlace>>(
     `swr.destination.centralMongolia`,
     () =>
       destinationApi.list({
@@ -44,9 +49,11 @@ export default function DestinationPage() {
     { revalidateOnFocus: false },
   );
 
-  const { data: EasternMongoliaData, mutate: EasternMongoliaMutate } = useSWR<
-    IResult<IBeautifulPlace>
-  >(
+  const {
+    data: EasternMongoliaData,
+    mutate: EasternMongoliaMutate,
+    isLoading: EasternMongoliaLoading,
+  } = useSWR<IResult<IBeautifulPlace>>(
     `swr.destination.easternMongolia`,
     () =>
       destinationApi.list({
@@ -59,9 +66,11 @@ export default function DestinationPage() {
     { revalidateOnFocus: false },
   );
 
-  const { data: WesternMongoliaData, mutate: WesternMongoliaMutate } = useSWR<
-    IResult<IBeautifulPlace>
-  >(
+  const {
+    data: WesternMongoliaData,
+    mutate: WesternMongoliaMutate,
+    isLoading: WesternMongoliaLoading,
+  } = useSWR<IResult<IBeautifulPlace>>(
     `swr.destination.westernMongolia`,
     () =>
       destinationApi.list({
@@ -74,9 +83,11 @@ export default function DestinationPage() {
     { revalidateOnFocus: false },
   );
 
-  const { data: SouthernMongoliaData, mutate: SouthernMongoliaMutate } = useSWR<
-    IResult<IBeautifulPlace>
-  >(
+  const {
+    data: SouthernMongoliaData,
+    mutate: SouthernMongoliaMutate,
+    isLoading: SouthernMongoliaLoading,
+  } = useSWR<IResult<IBeautifulPlace>>(
     `swr.destination.southernMongolia`,
     () =>
       destinationApi.list({
@@ -89,9 +100,11 @@ export default function DestinationPage() {
     { revalidateOnFocus: false },
   );
 
-  const { data: NorthernMongoliaData, mutate: NorthernMongoliaMutate } = useSWR<
-    IResult<IBeautifulPlace>
-  >(
+  const {
+    data: NorthernMongoliaData,
+    mutate: NorthernMongoliaMutate,
+    isLoading: NorthernMongoliaLoading,
+  } = useSWR<IResult<IBeautifulPlace>>(
     `swr.destination.northernMongolia`,
     () =>
       destinationApi.list({
@@ -110,13 +123,17 @@ export default function DestinationPage() {
         <DynamicBreadcrumb items={breadcrumbItems} />
       </div>
       <div className="space-y-12 mb-12">
-        <DestinationSection
-          type={true}
-          limit={6}
-          path="/destination"
-          title="Day trips"
-          destinations={dayTripsData?.rows}
-        />
+        {dayTripsData?.rows && dayTripsData?.rows?.length > 0 ? (
+          <DestinationSection
+            type={true}
+            limit={6}
+            path="/destination"
+            title="Day trips"
+            destinations={dayTripsData?.rows}
+          />
+        ) : (
+          <DestinationSkeleton title="Day trips" />
+        )}
         <DestinationSection
           type={true}
           limit={6}

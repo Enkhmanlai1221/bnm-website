@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useState, useEffect } from "react";
-import { ImageSkeleton, LoadingSpinner } from "../loading";
+import { ImageSkeleton } from "../loading";
 
 interface CarouselProps {
   images: string[];
@@ -33,6 +33,14 @@ export function Carosuel({
     if (images && images.length > 0) {
       setImageLoading(new Array(images.length).fill(true));
       setMainImageLoading(true);
+
+      // Fallback timeout to prevent infinite loading
+      const timeout = setTimeout(() => {
+        setImageLoading(new Array(images.length).fill(false));
+        setMainImageLoading(false);
+      }, 1000); // 10 second timeout
+
+      return () => clearTimeout(timeout);
     }
   }, [images]);
 
@@ -53,6 +61,18 @@ export function Carosuel({
   };
 
   const handleThumbnailLoad = (index: number) => {
+    setImageLoading((prev) => {
+      const newState = [...prev];
+      newState[index] = false;
+      return newState;
+    });
+  };
+
+  const handleMainImageError = () => {
+    setMainImageLoading(false);
+  };
+
+  const handleThumbnailError = (index: number) => {
     setImageLoading((prev) => {
       const newState = [...prev];
       newState[index] = false;
@@ -86,6 +106,7 @@ export function Carosuel({
           fill
           className="opacity-0"
           onLoad={handleMainImageLoad}
+          onError={handleMainImageError}
           sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 50vw"
         />
         {images.length > 1 && (
@@ -176,6 +197,7 @@ export function Carosuel({
                 }`}
                 sizes="(max-width: 768px) 25vw, (max-width: 1024px) 16vw, 12vw"
                 onLoad={() => handleThumbnailLoad(index)}
+                onError={() => handleThumbnailError(index)}
               />
             </button>
           ))}

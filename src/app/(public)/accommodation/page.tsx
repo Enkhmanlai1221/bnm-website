@@ -16,9 +16,11 @@ const breadcrumbItems = [
 ];
 
 export default function AccommodationPage() {
-  const { data: dayTripsData, mutate: dayTripsMutate } = useSWR<
-    IResult<IBeautifulPlace>
-  >(
+  const {
+    data: dayTripsData,
+    mutate: dayTripsMutate,
+    isLoading: dayTripsLoading,
+  } = useSWR<IResult<IBeautifulPlace>>(
     `swr.destination.dayTrips`,
     () =>
       destinationApi.list({
@@ -33,9 +35,11 @@ export default function AccommodationPage() {
     },
   );
 
-  const { data: CentralMongoliaData, mutate: CentralMongoliaMutate } = useSWR<
-    IResult<IBeautifulPlace>
-  >(
+  const {
+    data: CentralMongoliaData,
+    mutate: CentralMongoliaMutate,
+    isLoading: CentralMongoliaLoading,
+  } = useSWR<IResult<IBeautifulPlace>>(
     `swr.destination.centralMongolia`,
     () =>
       destinationApi.list({
@@ -48,9 +52,11 @@ export default function AccommodationPage() {
     { revalidateOnFocus: false },
   );
 
-  const { data: EasternMongoliaData, mutate: EasternMongoliaMutate } = useSWR<
-    IResult<IBeautifulPlace>
-  >(
+  const {
+    data: EasternMongoliaData,
+    mutate: EasternMongoliaMutate,
+    isLoading: EasternMongoliaLoading,
+  } = useSWR<IResult<IBeautifulPlace>>(
     `swr.destination.easternMongolia`,
     () =>
       destinationApi.list({
@@ -63,9 +69,11 @@ export default function AccommodationPage() {
     { revalidateOnFocus: false },
   );
 
-  const { data: WesternMongoliaData, mutate: WesternMongoliaMutate } = useSWR<
-    IResult<IBeautifulPlace>
-  >(
+  const {
+    data: WesternMongoliaData,
+    mutate: WesternMongoliaMutate,
+    isLoading: WesternMongoliaLoading,
+  } = useSWR<IResult<IBeautifulPlace>>(
     `swr.destination.westernMongolia`,
     () =>
       destinationApi.list({
@@ -78,9 +86,11 @@ export default function AccommodationPage() {
     { revalidateOnFocus: false },
   );
 
-  const { data: SouthernMongoliaData, mutate: SouthernMongoliaMutate } = useSWR<
-    IResult<IBeautifulPlace>
-  >(
+  const {
+    data: SouthernMongoliaData,
+    mutate: SouthernMongoliaMutate,
+    isLoading: SouthernMongoliaLoading,
+  } = useSWR<IResult<IBeautifulPlace>>(
     `swr.destination.southernMongolia`,
     () =>
       destinationApi.list({
@@ -93,9 +103,11 @@ export default function AccommodationPage() {
     { revalidateOnFocus: false },
   );
 
-  const { data: NorthernMongoliaData, mutate: NorthernMongoliaMutate } = useSWR<
-    IResult<IBeautifulPlace>
-  >(
+  const {
+    data: NorthernMongoliaData,
+    mutate: NorthernMongoliaMutate,
+    isLoading: NorthernMongoliaLoading,
+  } = useSWR<IResult<IBeautifulPlace>>(
     `swr.destination.northernMongolia`,
     () =>
       destinationApi.list({
@@ -109,7 +121,20 @@ export default function AccommodationPage() {
   );
 
   return (
-    <div className="min-h-screen">
+    <div
+      className="min-h-screen"
+      style={{
+        opacity:
+          dayTripsLoading ||
+          CentralMongoliaLoading ||
+          EasternMongoliaLoading ||
+          WesternMongoliaLoading ||
+          SouthernMongoliaLoading ||
+          NorthernMongoliaLoading
+            ? 0.5
+            : 1,
+      }}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-20">
         <DynamicBreadcrumb items={breadcrumbItems} />
       </div>

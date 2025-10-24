@@ -1,7 +1,5 @@
 "use client";
 
-import { useEffect, useState } from "react";
-
 interface LoadingSpinnerProps {
   size?: "sm" | "md" | "lg";
   className?: string;
@@ -94,6 +92,29 @@ export const ContentLoading = () => {
       {[1, 2, 3].map((index) => (
         <SkeletonCard key={index} />
       ))}
+    </div>
+  );
+};
+
+export const DestinationSkeleton = ({ title }: { title: string }) => {
+  return (
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="text-start mb-6">
+        <div className="h-8 bg-gray-200 rounded w-48 animate-pulse"></div>
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 auto-rows-[18rem] gap-4">
+        {Array.from({ length: 6 }).map((_, index) => (
+          <div
+            key={index}
+            className="relative overflow-hidden rounded-2xl min-h-[18rem] max-h-[37rem] bg-gray-200 animate-pulse"
+          >
+            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
+              <div className="h-6 bg-gray-300 rounded w-3/4 animate-pulse"></div>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

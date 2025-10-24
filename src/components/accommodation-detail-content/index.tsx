@@ -10,9 +10,11 @@ export const AccommodationDetailContent = ({
   feature: IFeature[];
   isLoading?: boolean;
 }) => {
-  // if (isLoading) {
-  //   return <ContentLoading />;
-  // }
+  if (isLoading) return <ContentLoading />;
+
+  if (!feature || feature.length === 0) {
+    return <div className="text-gray-600">No feature found</div>;
+  }
 
   return (
     <div className="space-y-12">

@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { EventCardData } from "@/components/data/data-card";
 import { VisitBnmTours } from "@/components/events/visit-bnm-tours";
 import { DynamicBreadcrumb } from "@/components/breadcrumb";
 import { IResult } from "@/interfaces/result";
@@ -96,7 +95,14 @@ export default function EventsPage() {
             </Link>
           ))}
         </div>
-        <VisitBnmTours />
+        <Image
+          src="/ESCAPESTORIES.png"
+          alt="Visit BNM Tours"
+          width={1000}
+          height={1000}
+          className="w-full h-full object-cover"
+        />
+        {/* <VisitBnmTours /> */}
       </div>
     </div>
   );
