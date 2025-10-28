@@ -36,7 +36,18 @@ export default function VisitUlaanbaatarTypePage() {
     { label: "Home", href: "/" },
     { label: "Visit Ulaanbaatar", href: "/visit-ulaanbaatar" },
     {
-      label: type as string,
+      label:
+        type === "PLACES_TO_VISIT"
+          ? "Places to Visit"
+          : type === "STATUES_MONUMENTS"
+            ? "Statues & Monuments"
+            : type === "MUSEUMS"
+              ? "Museums"
+              : type === "HISTORY_CAPITAL"
+                ? "History & Capital"
+                : type === "INFORMATION_CENTERS"
+                  ? "Information Centers"
+                  : (type as string),
       href: `/visit-ulaanbaatar/category/${type}`,
       isActive: true,
     },

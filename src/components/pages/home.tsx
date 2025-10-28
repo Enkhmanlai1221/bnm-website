@@ -2,8 +2,26 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
+import { ImageSkeleton } from "../loading";
 
 export default function HomeInfoPage() {
+  const [loadedDestinations, setLoadedDestinations] = useState<
+    Record<number, boolean>
+  >({});
+  const [loadedUlaanbaatar, setLoadedUlaanbaatar] = useState<
+    Record<number, boolean>
+  >({});
+  const [loadedInformation, setLoadedInformation] = useState<
+    Record<number, boolean>
+  >({});
+  const [loadedAccommodation, setLoadedAccommodation] = useState<
+    Record<number, boolean>
+  >({});
+  const [loadedCommercial, setLoadedCommercial] = useState<
+    Record<number, boolean>
+  >({});
+  const [loadedEvents, setLoadedEvents] = useState<Record<number, boolean>>({});
   const destinations = [
     {
       id: 1,
@@ -311,11 +329,24 @@ export default function HomeInfoPage() {
                 className={`group relative overflow-hidden ${getCardInformationClasses(destination.size)} ${getCardInformationHeight(destination.size)} rounded-2xl min-h-[18rem] max-h-[37rem]`}
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
+                {!loadedDestinations[destination.id] && (
+                  <div className="absolute inset-0">
+                    <ImageSkeleton className="w-full h-full rounded-2xl" />
+                  </div>
+                )}
                 <Image
                   src={destination.image}
                   alt={destination.title}
                   fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                  priority={index < 4}
                   className="duration-700 group-hover:scale-105"
+                  onLoadingComplete={() =>
+                    setLoadedDestinations((prev) => ({
+                      ...prev,
+                      [destination.id]: true,
+                    }))
+                  }
                 />
               </Link>
             ))}
@@ -345,11 +376,24 @@ export default function HomeInfoPage() {
                 className={`group relative overflow-hidden ${getCardInformationClasses(destination.size)} ${getCardInformationHeight(destination.size)} rounded-2xl`}
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
+                {!loadedUlaanbaatar[destination.id] && (
+                  <div className="absolute inset-0">
+                    <ImageSkeleton className="w-full h-full rounded-2xl" />
+                  </div>
+                )}
                 <Image
                   src={destination.image}
                   alt={destination.title}
                   fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                  priority={index < 2}
                   className="duration-700 group-hover:scale-105"
+                  onLoadingComplete={() =>
+                    setLoadedUlaanbaatar((prev) => ({
+                      ...prev,
+                      [destination.id]: true,
+                    }))
+                  }
                 />
               </Link>
             ))}
@@ -371,11 +415,23 @@ export default function HomeInfoPage() {
                 className={`group relative overflow-hidden ${getCardInformationClasses(destination.size)} ${getCardInformationHeight(destination.size)} rounded-2xl`}
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
+                {!loadedInformation[destination.id] && (
+                  <div className="absolute inset-0">
+                    <ImageSkeleton className="w-full h-full rounded-2xl" />
+                  </div>
+                )}
                 <Image
                   src={destination.image}
                   alt={destination.title}
                   fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                   className="duration-700 group-hover:scale-105"
+                  onLoadingComplete={() =>
+                    setLoadedInformation((prev) => ({
+                      ...prev,
+                      [destination.id]: true,
+                    }))
+                  }
                 />
               </div>
             ))}
@@ -395,11 +451,23 @@ export default function HomeInfoPage() {
                 className={`group relative overflow-hidden ${getCardInformationClasses(destination.size)} ${getCardInformationHeight(destination.size)} rounded-2xl`}
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
+                {!loadedAccommodation[destination.id] && (
+                  <div className="absolute inset-0">
+                    <ImageSkeleton className="w-full h-full rounded-2xl" />
+                  </div>
+                )}
                 <Image
                   src={destination.image}
                   alt={destination.title}
                   fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                   className="duration-700 group-hover:scale-105"
+                  onLoadingComplete={() =>
+                    setLoadedAccommodation((prev) => ({
+                      ...prev,
+                      [destination.id]: true,
+                    }))
+                  }
                 />
               </div>
             ))}
@@ -419,11 +487,23 @@ export default function HomeInfoPage() {
                 className={`group relative overflow-hidden ${getCardInformationClasses(destination.size)} ${getCardInformationHeight(destination.size)} rounded-2xl`}
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
+                {!loadedCommercial[destination.id] && (
+                  <div className="absolute inset-0">
+                    <ImageSkeleton className="w-full h-full rounded-2xl" />
+                  </div>
+                )}
                 <Image
                   src={destination.image}
                   alt={destination.title}
                   fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                   className="duration-700 group-hover:scale-105"
+                  onLoadingComplete={() =>
+                    setLoadedCommercial((prev) => ({
+                      ...prev,
+                      [destination.id]: true,
+                    }))
+                  }
                 />
               </div>
             ))}
@@ -444,11 +524,23 @@ export default function HomeInfoPage() {
                     className="group relative overflow-hidden w-64 h-64 rounded-full"
                     style={{ animationDelay: `${index * 0.1}s` }}
                   >
+                    {!loadedEvents[event.id] && (
+                      <div className="absolute inset-0 rounded-full overflow-hidden">
+                        <ImageSkeleton className="w-full h-full rounded-full" />
+                      </div>
+                    )}
                     <Image
                       src={event.image}
                       alt={event.title}
                       fill
+                      sizes="256px"
                       className="object-cover transition-transform duration-700 group-hover:scale-110 rounded-full"
+                      onLoadingComplete={() =>
+                        setLoadedEvents((prev) => ({
+                          ...prev,
+                          [event.id]: true,
+                        }))
+                      }
                     />
                   </div>
                   <div className="text-center">
@@ -468,11 +560,23 @@ export default function HomeInfoPage() {
                     className="group relative overflow-hidden w-64 h-64 rounded-full shadow-lg hover:shadow-2xl transition-all duration-700 transform hover:scale-105 hover:-translate-y-2 animate-fade-in-up"
                     style={{ animationDelay: `${(index + 3) * 0.1}s` }}
                   >
+                    {!loadedEvents[event.id] && (
+                      <div className="absolute inset-0 rounded-full overflow-hidden">
+                        <ImageSkeleton className="w-full h-full rounded-full" />
+                      </div>
+                    )}
                     <Image
                       src={event.image}
                       alt={event.title}
                       fill
+                      sizes="256px"
                       className="object-cover transition-transform duration-700 group-hover:scale-110 rounded-full"
+                      onLoadingComplete={() =>
+                        setLoadedEvents((prev) => ({
+                          ...prev,
+                          [event.id]: true,
+                        }))
+                      }
                     />
                   </div>
                   <div className="text-center">
@@ -595,6 +699,7 @@ export default function HomeInfoPage() {
                     src={tour.image}
                     alt={tour.title}
                     fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     className="object-cover group-hover:scale-105 transition-transform duration-300"
                   />
 

@@ -1,6 +1,10 @@
+"use client";
+
 import { DynamicBreadcrumb } from "@/components/breadcrumb";
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
+import { ImageSkeleton } from "@/components/loading";
 
 const breadcrumbItems = [
   { label: "Home", href: "/" },
@@ -8,6 +12,8 @@ const breadcrumbItems = [
 ];
 
 export default function VisitUlaanbaatarPage() {
+  const [loadedPlaces, setLoadedPlaces] = useState<Record<number, boolean>>({});
+  const [loadedAnar, setLoadedAnar] = useState(false);
   const places = [
     {
       id: 1,
@@ -78,11 +84,23 @@ export default function VisitUlaanbaatarPage() {
                 className={`group relative overflow-hidden ${getCardInformationClasses(place.size)} ${getCardInformationHeight(place.size)}`}
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
+                {!loadedPlaces[place.id] && (
+                  <div className="absolute inset-0">
+                    <ImageSkeleton className="w-full h-full rounded-2xl" />
+                  </div>
+                )}
                 <Image
                   src={place.image}
                   alt={place.type}
                   fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 16vw"
                   className="duration-700 group-hover:scale-105"
+                  onLoadingComplete={() =>
+                    setLoadedPlaces((prev) => ({
+                      ...prev,
+                      [place.id]: true,
+                    }))
+                  }
                 />
               </Link>
             ))}
@@ -94,11 +112,18 @@ export default function VisitUlaanbaatarPage() {
         style={{ backgroundColor: "#abc2f3" }}
       >
         <div className="absolute bottom-0 left-8 w-[20rem] h-[20rem] flex-shrink-0 z-10">
+          {!loadedAnar && (
+            <div className="absolute inset-0">
+              <ImageSkeleton className="w-full h-full rounded-2xl" />
+            </div>
+          )}
           <Image
             src="/VISIT_UB/ANAR.png"
             alt="Virtual Tour Guide Anar"
             fill
+            sizes="320px"
             className="object-contain"
+            onLoadingComplete={() => setLoadedAnar(true)}
           />
         </div>
         <div>

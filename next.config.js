@@ -29,52 +29,11 @@ const nextConfig = {
   // },
   output: "standalone",
   images: {
+    formats: ["image/avif", "image/webp"],
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "*.alicdn.com",
-        port: "",
-        pathname: "/**",
-      },
-      {
-        protocol: "http",
-        hostname: "*.alicdn.com",
-        port: "",
-        pathname: "/**",
-      },
-      {
-        protocol: "https",
-        hostname: "*.taobao.com",
-        port: "",
-        pathname: "/**",
-      },
-      {
-        protocol: "https",
         hostname: "dev-goodtech.s3.ap-southeast-1.amazonaws.com",
-        port: "",
-        pathname: "/**",
-      },
-      {
-        protocol: "https",
-        hostname: "dev-azod.zto.mn",
-        port: "",
-        pathname: "/**",
-      },
-      {
-        protocol: "https",
-        hostname: "randomuser.me",
-        port: "",
-        pathname: "/api/**",
-      },
-      {
-        protocol: "https",
-        hostname: "randomuser.me",
-        port: "",
-        pathname: "/img/**",
-      },
-      {
-        protocol: "https",
-        hostname: "*.bananamall.mn",
         port: "",
         pathname: "/**",
       },

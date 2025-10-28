@@ -4,6 +4,9 @@ import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
 import Image from "next/image";
 import { IMerchant } from "@/interfaces/merchant";
+import useSWR from "swr";
+import { destinationApi, merchantApi } from "@/apis";
+import { ContentLoading } from "@/components/loading";
 
 const tourProperties = [
   {
@@ -133,13 +136,13 @@ const facilityProperties = [
 ];
 
 export default function MerchantDetailPage() {
-  const params = useParams();
+  const { id } = useParams();
   const [merchant, setMerchant] = useState<IMerchant | null>(null);
   const [activeTab, setActiveTab] = useState("about");
 
   useEffect(() => {
     const mockMerchant: IMerchant = {
-      id: params.id as string,
+      id: id as string,
       name: "Tsagaan Suvarga Tourist Camp",
       description:
         "Монголын сайхан газруудыг танилцуулж, аялал жуулчлалын үйлчилгээ үзүүлдэг тэргүүлэгч компани. Бид танд Монголын түүх, соёл, байгалийн үзэсгэлэнт газруудыг танилцуулах болно.",
@@ -184,7 +187,24 @@ export default function MerchantDetailPage() {
       following: 450,
     };
     setMerchant(mockMerchant);
-  }, [params.id]);
+  }, [id]);
+
+  const { data: detailData, isLoading } = useSWR<any>(
+    `swr.merchant.detail.${id}`,
+    () => merchantApi.get(id as string),
+  );
+
+  if (isLoading) {
+    return <ContentLoading />;
+  }
+
+  if (!detailData) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-lg text-gray-600">Merchant not found</div>
+      </div>
+    );
+  }
 
   if (!merchant) {
     return (
@@ -193,13 +213,6 @@ export default function MerchantDetailPage() {
       </div>
     );
   }
-
-  //   const tabs = [
-  //     { id: "about", label: "Тухай", icon: "👤" },
-  //     { id: "services", label: "Үйлчилгээ", icon: "🏢" },
-  //     { id: "gallery", label: "Зураг", icon: "📸" },
-  //     { id: "reviews", label: "Сэтгэгдэл", icon: "⭐" },
-  //   ];
 
   return (
     <div className="min-h-screen bg-gray-50">

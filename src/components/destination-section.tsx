@@ -48,9 +48,21 @@ export default function DestinationSection({
   const canScrollRight = currentIndex + displayLimit < destinations.length;
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-24">
       <div className="text-start mb-6">
-        <h2 className="text-3xl font-bold text-gray-900 mb-0">{title}</h2>
+        <h2 className="text-3xl font-bold text-gray-900 mb-0">
+          {title === "PLACES_TO_VISIT"
+            ? "Places to Visit"
+            : title === "STATUES_MONUMENTS"
+              ? "Statues & Monuments"
+              : title === "MUSEUMS"
+                ? "Museums"
+                : title === "HISTORY_CAPITAL"
+                  ? "History & Capital"
+                  : title === "INFORMATION_CENTERS"
+                    ? "Information Centers"
+                    : title}
+        </h2>
       </div>
 
       <div className="relative">

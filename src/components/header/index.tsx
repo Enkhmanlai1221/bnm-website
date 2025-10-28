@@ -24,10 +24,10 @@ const navigationItems: NavigationItem[] = [
     label: "Accommodation",
     href: "/accommodation",
   },
-  {
-    label: "BNM Tours",
-    href: "/bnm-tours",
-  },
+  // {
+  //   label: "BNM Tours",
+  //   href: "/bnm-tours",
+  // },
   {
     label: "Events",
     href: "/events",

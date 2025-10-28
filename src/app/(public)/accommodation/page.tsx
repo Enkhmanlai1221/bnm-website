@@ -21,7 +21,7 @@ export default function AccommodationPage() {
     mutate: dayTripsMutate,
     isLoading: dayTripsLoading,
   } = useSWR<IResult<IBeautifulPlace>>(
-    `swr.destination.dayTrips`,
+    `swr.accommodation.dayTrips`,
     () =>
       destinationApi.list({
         page: 1,
@@ -40,7 +40,7 @@ export default function AccommodationPage() {
     mutate: CentralMongoliaMutate,
     isLoading: CentralMongoliaLoading,
   } = useSWR<IResult<IBeautifulPlace>>(
-    `swr.destination.centralMongolia`,
+    `swr.accommodation.centralMongolia`,
     () =>
       destinationApi.list({
         page: 1,
@@ -57,7 +57,7 @@ export default function AccommodationPage() {
     mutate: EasternMongoliaMutate,
     isLoading: EasternMongoliaLoading,
   } = useSWR<IResult<IBeautifulPlace>>(
-    `swr.destination.easternMongolia`,
+    `swr.accommodation.easternMongolia`,
     () =>
       destinationApi.list({
         page: 1,
@@ -74,7 +74,7 @@ export default function AccommodationPage() {
     mutate: WesternMongoliaMutate,
     isLoading: WesternMongoliaLoading,
   } = useSWR<IResult<IBeautifulPlace>>(
-    `swr.destination.westernMongolia`,
+    `swr.accommodation.westernMongolia`,
     () =>
       destinationApi.list({
         page: 1,
@@ -91,7 +91,7 @@ export default function AccommodationPage() {
     mutate: SouthernMongoliaMutate,
     isLoading: SouthernMongoliaLoading,
   } = useSWR<IResult<IBeautifulPlace>>(
-    `swr.destination.southernMongolia`,
+    `swr.accommodation.southernMongolia`,
     () =>
       destinationApi.list({
         page: 1,
@@ -108,7 +108,7 @@ export default function AccommodationPage() {
     mutate: NorthernMongoliaMutate,
     isLoading: NorthernMongoliaLoading,
   } = useSWR<IResult<IBeautifulPlace>>(
-    `swr.destination.northernMongolia`,
+    `swr.accommodation.northernMongolia`,
     () =>
       destinationApi.list({
         page: 1,

@@ -77,8 +77,12 @@ export default function DestinationDetailPage() {
                 Recommended Accommodation
               </h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 auto-rows-[22rem] gap-4 transition-all duration-300">
-                {nearbyMerchants?.rows?.map((property: any) => (
-                  <MerchantCard key={property._id} data={property} />
+                {nearbyMerchants?.rows?.map((property: any, index: number) => (
+                  <MerchantCard
+                    key={property._id}
+                    data={property}
+                    index={index}
+                  />
                 ))}
               </div>
             </div>
@@ -99,8 +103,12 @@ export default function DestinationDetailPage() {
                 Recommended BNM Tours
               </h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 auto-rows-[22rem] gap-4 transition-all duration-300">
-                {nearbyMerchants?.rows?.map((property: any) => (
-                  <MerchantCard key={property._id} data={property} />
+                {nearbyMerchants?.rows?.map((property: any, index: number) => (
+                  <MerchantCard
+                    key={property._id}
+                    data={property}
+                    index={index}
+                  />
                 ))}
               </div>
               <Image

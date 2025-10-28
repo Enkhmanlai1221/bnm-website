@@ -11,20 +11,20 @@ import useSWR from "swr";
 export default function VisitUlaanbaatarDetailPage() {
   const { id } = useParams();
 
-  const breadcrumbItems = [
-    { label: "Home", href: "/" },
-    { label: "Visit Ulaanbaatar", href: "/visit-ulaanbaatar" },
-    {
-      label: "Visit Ulaanbaatar",
-      href: `/visit-ulaanbaatar/${id}`,
-      isActive: true,
-    },
-  ];
-
   const { data, isLoading } = useSWR<IBeautifulPlace>(
     `swr.destination.visitUlaanbaatar.detail.${id}`,
     () => destinationApi.get(id as string),
   );
+
+  const breadcrumbItems = [
+    { label: "Home", href: "/" },
+    { label: "Visit Ulaanbaatar", href: "/visit-ulaanbaatar" },
+    {
+      label: data?.reference?.name || "Detail",
+      href: `/visit-ulaanbaatar/${id}`,
+      isActive: true,
+    },
+  ];
 
   if (isLoading) {
     return <ContentLoading />;
@@ -40,7 +40,7 @@ export default function VisitUlaanbaatarDetailPage() {
 
   return (
     <div className="min-h-screen">
-      <div className="mt-20">
+      <div className="my-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <DynamicBreadcrumb items={breadcrumbItems} />
           <AccommodationDetailContent feature={data?.features} />
