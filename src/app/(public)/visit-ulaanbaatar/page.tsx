@@ -81,7 +81,7 @@ export default function VisitUlaanbaatarPage() {
               <Link
                 key={place.id}
                 href={`/visit-ulaanbaatar/category/${place.type}`}
-                className={`group relative overflow-hidden ${getCardInformationClasses(place.size)} ${getCardInformationHeight(place.size)}`}
+                className={`group relative overflow-hidden ${getCardInformationClasses(place.size)} ${getCardInformationHeight(place.size)} rounded-2xl`}
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 {!loadedPlaces[place.id] && (

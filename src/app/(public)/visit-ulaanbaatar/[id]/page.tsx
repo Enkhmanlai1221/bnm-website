@@ -22,6 +22,10 @@ export default function VisitUlaanbaatarDetailPage() {
     {
       label: data?.reference?.name || "Detail",
       href: `/visit-ulaanbaatar/${id}`,
+    },
+    {
+      label: data?.name || "Detail",
+      href: `/visit-ulaanbaatar/${id}`,
       isActive: true,
     },
   ];

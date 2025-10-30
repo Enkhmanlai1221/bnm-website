@@ -27,7 +27,7 @@ export default function DynamicBreadcrumb({
 
   return (
     <nav
-      className={`flex items-center space-x-1 text-sm text-gray-500 mb-4 ${className}`}
+      className={`flex items-center space-x-1 text-sm text-gray-500 ${className}`}
       aria-label="Breadcrumb"
     >
       <ol className="flex items-center space-x-1">

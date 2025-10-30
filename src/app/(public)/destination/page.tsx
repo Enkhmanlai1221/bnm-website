@@ -119,7 +119,7 @@ export default function DestinationPage() {
 
   return (
     <div className="min-h-screen">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-20 mb-8">
         <DynamicBreadcrumb items={breadcrumbItems} />
       </div>
       <div className="space-y-12 mb-12">

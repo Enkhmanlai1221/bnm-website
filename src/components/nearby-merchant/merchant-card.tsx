@@ -31,7 +31,7 @@ export function MerchantCard({ data, index }: { data: any; index: number }) {
           />
         </div>
       </Link>
-      <div className="p-4 mt-1">
+      <div className="mt-2">
         <h3 className="font-bold text-md mb-1 line-clamp-2 group-hover:text-primary transition-colors duration-300">
           {data.name}
         </h3>
