@@ -98,28 +98,33 @@ export function Header() {
             </Link>
 
             <div className="hidden lg:flex items-center gap-1">
-              {navigationItems?.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className={cn(
-                    "relative px-5 py-2 text-[13px] font-medium tracking-wide transition-all duration-200",
-                    "hover:opacity-70",
-                    showDarkHeader ? "text-gray-900" : "text-white",
-                    pathname === item.href && "opacity-100",
-                  )}
-                >
-                  {item.label}
-                  {pathname === item.href && (
-                    <span
-                      className={cn(
-                        "absolute bottom-0 left-1/2 -translate-x-1/2 h-[2px] w-6 rounded-full transition-colors duration-200",
-                        showDarkHeader ? "bg-blue-600" : "bg-white",
-                      )}
-                    />
-                  )}
-                </Link>
-              ))}
+              {navigationItems?.map((item) => {
+                const isActive =
+                  pathname === item.href ||
+                  (pathname.startsWith(item.href) && item.href !== "/");
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className={cn(
+                      "relative px-5 py-2 text-[13px] font-medium tracking-wide transition-all duration-200",
+                      "hover:opacity-70",
+                      showDarkHeader ? "text-gray-900" : "text-white",
+                      isActive && "opacity-100",
+                    )}
+                  >
+                    {item.label}
+                    {isActive && (
+                      <span
+                        className={cn(
+                          "absolute bottom-0 left-1/2 -translate-x-1/2 h-[2px] w-6 rounded-full transition-colors duration-200",
+                          showDarkHeader ? "bg-blue-600" : "bg-white",
+                        )}
+                      />
+                    )}
+                  </Link>
+                );
+              })}
             </div>
 
             <div className="flex items-center gap-2 sm:gap-3">
@@ -187,25 +192,30 @@ export function Header() {
               showDarkHeader ? "bg-white/95" : "bg-black/40 backdrop-blur-md",
             )}
           >
-            {navigationItems?.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                onClick={() => setIsMobileMenuOpen(false)}
-                className={cn(
-                  "block px-4 py-3 text-sm font-medium rounded-lg transition-all duration-200",
-                  showDarkHeader
-                    ? "text-gray-900 hover:bg-gray-100"
-                    : "text-white hover:bg-white/10",
-                  pathname === item.href &&
-                    (showDarkHeader
-                      ? "bg-blue-50 text-blue-600"
-                      : "bg-white/20"),
-                )}
-              >
-                {item.label}
-              </Link>
-            ))}
+            {navigationItems?.map((item) => {
+              const isActive =
+                pathname === item.href ||
+                (pathname.startsWith(item.href) && item.href !== "/");
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className={cn(
+                    "block px-4 py-3 text-sm font-medium rounded-lg transition-all duration-200",
+                    showDarkHeader
+                      ? "text-gray-900 hover:bg-gray-100"
+                      : "text-white hover:bg-white/10",
+                    isActive &&
+                      (showDarkHeader
+                        ? "bg-blue-50 text-blue-600"
+                        : "bg-white/20"),
+                  )}
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
             <Link
               href="/login"
               onClick={() => setIsMobileMenuOpen(false)}
