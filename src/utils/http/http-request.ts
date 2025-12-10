@@ -40,10 +40,10 @@ export class HttpRequest {
       "";
 
     // Production дээр rewrites ашиглах (CORS асуудлыг шийдэх)
-    // Rewrites ашиглахын тулд host хоосон байх хэрэгтэй
+    // Browser-аас same-origin хүсэлт, Next.js server rewrites ашиглан backend руу дамжуулна
     const isProduction = process.env.NODE_ENV === "production";
     if (isProduction) {
-      // Production дээр rewrites ашиглах тул host хоосон, prefix хэвээр (/aut/api)
+      // Production дээр rewrites ашиглах тул host хоосон, prefix хэвээр (/api)
       this.host = "";
       this.prefix = prefix || "";
     } else {
