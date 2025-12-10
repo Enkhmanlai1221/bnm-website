@@ -71,7 +71,7 @@ export const AccommodationDetailContent = ({
               )}
             </div>
           </div>
-          {item?.url && (
+          {/* {item?.url && (
             <div className="mb-6">
               <iframe
                 src="https://www.youtube.com/embed/cPtSIPk2ETo?autoplay=1&mute=1&loop=1&playlist=cPtSIPk2ETo"
@@ -81,7 +81,7 @@ export const AccommodationDetailContent = ({
                 allowFullScreen
               />
             </div>
-          )}
+          )} */}
         </div>
       ))}
     </div>

@@ -121,21 +121,21 @@ export default function AccommodationDetailPage() {
     { revalidateOnFocus: false },
   );
 
-  if (merchantDataLoading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-lg text-gray-600">Loading...</div>
-      </div>
-    );
-  }
+  // if (merchantDataLoading) {
+  //   return (
+  //     <div className="min-h-screen flex items-center justify-center">
+  //       <div className="text-lg text-gray-600">Loading...</div>
+  //     </div>
+  //   );
+  // }
 
-  if (!merchantData) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-lg text-gray-600">merchantData not found</div>
-      </div>
-    );
-  }
+  // if (!merchantData) {
+  //   return (
+  //     <div className="min-h-screen flex items-center justify-center">
+  //       <div className="text-lg text-gray-600">merchantData not found</div>
+  //     </div>
+  //   );
+  // }
 
   return (
     <div className="min-h-screen">
@@ -147,15 +147,21 @@ export default function AccommodationDetailPage() {
             <h2 className="text-3xl font-bold text-gray-900">
               {detailData?.name}
             </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 auto-rows-[22rem] gap-4 transition-all duration-300">
-              {merchantData?.rows?.map((merchant: any, index: number) => (
-                <MerchantCard
-                  key={merchant._id}
-                  data={merchant}
-                  index={index}
-                />
-              ))}
-            </div>
+            {merchantData?.rows?.length && merchantData?.rows?.length > 0 ? (
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 auto-rows-[22rem] gap-4 transition-all duration-300">
+                {merchantData?.rows?.map((merchant: any, index: number) => (
+                  <MerchantCard
+                    key={merchant._id}
+                    data={merchant}
+                    index={index}
+                  />
+                ))}
+              </div>
+            ) : (
+              <div className="flex items-center justify-center h-64 border border-gray-200 rounded-lg p-4">
+                <div className="text-gray-500">No nearby merchants found</div>
+              </div>
+            )}
           </div>
         </div>
         {nearbyAccommodationData?.rows &&
