@@ -1,8 +1,6 @@
 "use client";
 import { IBeautifulPlace } from "@/interfaces/beautiful-place";
-import { UnstyledButton } from "@mantine/core";
 import Image from "next/image";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { LoadingSpinner, ImageSkeleton } from "./loading";
@@ -12,6 +10,7 @@ interface DestinationCardProps {
   index: number;
   type?: boolean;
   path: string;
+  isEvents: boolean;
 }
 
 export default function DestinationCard({
@@ -19,6 +18,7 @@ export default function DestinationCard({
   destination,
   index,
   type = false,
+  isEvents = false,
 }: DestinationCardProps) {
   const [isLoading, setIsLoading] = useState(false);
   const [imageLoading, setImageLoading] = useState(true);
@@ -58,17 +58,35 @@ export default function DestinationCard({
     setImageLoading(false);
   };
 
+  const parseEventDate = (description: string) => {
+    // Parse description like "JAN 7-8" into month and dates
+    const parts = description?.trim().split(/\s+/);
+    if (parts && parts.length >= 2) {
+      return {
+        month: parts[0].toUpperCase(),
+        dates: parts.slice(1).join(" "),
+      };
+    }
+    return null;
+  };
+
+  const eventDate =
+    isEvents && destination.description
+      ? parseEventDate(destination.description)
+      : null;
+
   return (
-    <UnstyledButton
+    <button
       key={destination._id}
       onClick={handleNavigation}
       disabled={isLoading}
-      className={`justify-start group relative overflow-hidden ${getCardClasses(destination.imagePosition)} rounded-2xl min-h-[18rem] max-h-[37rem] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200 hover:shadow-lg`}
+      className={`justify-start group relative overflow-hidden ${getCardClasses(destination.imagePosition)} rounded-2xl min-h-[18rem] max-h-[37rem] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200 hover:shadow-lg bg-transparent border-none p-0 cursor-pointer`}
       aria-label={`View details for ${destination.name}`}
     >
       {isLoading ? (
         <div
-          className="flex items-center justify-center h-full bg-gray-100"
+          className="flex items-center justify-center h-full"
+          style={{ backgroundImage: `url('${destination.mainImage?.url}')` }}
           role="status"
           aria-label="Loading destination"
         >
@@ -115,6 +133,16 @@ export default function DestinationCard({
           )}
         </>
       )}
+      {isEvents && eventDate && (
+        <div className="absolute top-4 right-4 bg-white rounded-lg px-3 py-2 shadow-lg z-10">
+          <div className="text-blue-600 font-bold text-sm leading-none">
+            {eventDate.month}
+          </div>
+          <div className="text-red-600 font-bold text-base leading-tight mt-1">
+            {eventDate.dates}
+          </div>
+        </div>
+      )}
       {type && (
         <div className="text-start absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
           <h3 className="text-white font-bold text-lg leading-tight text-start">
@@ -122,6 +150,6 @@ export default function DestinationCard({
           </h3>
         </div>
       )}
-    </UnstyledButton>
+    </button>
   );
 }

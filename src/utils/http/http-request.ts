@@ -33,8 +33,24 @@ export class HttpRequest {
     errorHandler?: (statusCode: number, error: HttpHandler) => void,
   ) {
     this.errorHandler = errorHandler;
-    this.host = host || "";
-    this.prefix = prefix || "";
+    const apiHost =
+      host ||
+      process.env.NEXT_PUBLIC_LOCAL_API_HOST ||
+      process.env.NEXT_PUBLIC_API_HOST ||
+      "";
+
+    // Production дээр rewrites ашиглах (CORS асуудлыг шийдэх)
+    // Rewrites ашиглахын тулд host хоосон байх хэрэгтэй
+    const isProduction = process.env.NODE_ENV === "production";
+    if (isProduction) {
+      // Production дээр rewrites ашиглах тул host хоосон, prefix хэвээр (/aut/api)
+      this.host = "";
+      this.prefix = prefix || "";
+    } else {
+      // Development дээр прокси эсвэл шууд host ашиглах
+      this.host = apiHost;
+      this.prefix = prefix || "";
+    }
   }
 
   async request(api: string, data: JSONobj, options: Options) {
@@ -47,9 +63,9 @@ export class HttpRequest {
     const defaultOptions: RequestInit = {
       credentials: "include",
       method: options.method,
-      // headers: {
-      //   Platform: "CUSTOMS",
-      // },
+      headers: {
+        Platform: "CUSTOMS",
+      },
     };
 
     if (
@@ -99,10 +115,11 @@ export class HttpRequest {
     }
 
     try {
+      // Development дээр прокси ашиглах (/rest), production дээр rewrites ашиглах
+      const apiPrefix =
+        process.env.NODE_ENV !== "production" && !this.host ? "/rest" : "";
       const res = await fetch(
-        `${this.host}${process.env.NODE_ENV !== "production" ? "/rest" : ""}${
-          this.prefix
-        }${api}${queryString}`,
+        `${this.host}${apiPrefix}${this.prefix}${api}${queryString}`,
         defaultOptions,
       );
       const http = new HttpHandler(res.status);
@@ -115,7 +132,6 @@ export class HttpRequest {
         this.errorHandler((ex as HttpHandler).statusCode, ex as HttpHandler);
         return null;
       }
-
       throw ex;
     }
   }
@@ -170,13 +186,13 @@ export class HttpRequest {
       addQueryPrefix: true,
     });
 
+    // Development дээр прокси ашиглах (/rest), production дээр rewrites ашиглах
+    const apiPrefix =
+      process.env.NODE_ENV !== "production" && !this.host ? "/rest" : "";
     const res = await fetch(
-      `${this.host}${process.env.NODE_ENV !== "production" ? "/rest" : ""}${
-        this.prefix
-      }${api}${queryString}`,
+      `${this.host}${apiPrefix}${this.prefix}${api}${queryString}`,
       defaultOptions,
     );
-
     return res;
   }
 

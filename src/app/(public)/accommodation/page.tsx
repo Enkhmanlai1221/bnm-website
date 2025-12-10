@@ -5,9 +5,6 @@ import { DynamicBreadcrumb } from "@/components/breadcrumb";
 import DestinationSection from "@/components/destination-section";
 import { IBeautifulPlace } from "@/interfaces/beautiful-place";
 import { IResult } from "@/interfaces/result";
-import { BeautifulPlace } from "@/models/beautiful-place";
-import Image from "next/image";
-import Link from "next/link";
 import useSWR from "swr";
 
 const breadcrumbItems = [
@@ -27,7 +24,7 @@ export default function AccommodationPage() {
         page: 1,
         limit: 100,
         type: "ACCOMMODATION",
-        reference: "68ee93c4b88440a78c3d94e0",
+        reference: "691c78ccc2946089f91abca9",
         isHomeScreen: true,
       }),
     {
@@ -46,7 +43,7 @@ export default function AccommodationPage() {
         page: 1,
         limit: 100,
         type: "ACCOMMODATION",
-        reference: "68eff09e76da61656a1e6f93",
+        reference: "691c78d6c2946089f91abcd0",
         isHomeScreen: true,
       }),
     { revalidateOnFocus: false },
@@ -63,7 +60,7 @@ export default function AccommodationPage() {
         page: 1,
         limit: 100,
         type: "ACCOMMODATION",
-        reference: "68eff05576da61656a1e6f84",
+        reference: "691c78e2c2946089f91abcf7",
         isHomeScreen: true,
       }),
     { revalidateOnFocus: false },
@@ -80,7 +77,7 @@ export default function AccommodationPage() {
         page: 1,
         limit: 100,
         type: "ACCOMMODATION",
-        reference: "68eff0e476da61656a1e6fb7",
+        reference: "691c78edc2946089f91abd1e",
         isHomeScreen: true,
       }),
     { revalidateOnFocus: false },
@@ -97,7 +94,7 @@ export default function AccommodationPage() {
         page: 1,
         limit: 100,
         type: "ACCOMMODATION",
-        reference: "68eff0f076da61656a1e6fc0",
+        reference: "691c78f7c2946089f91abd45",
         isHomeScreen: true,
       }),
     { revalidateOnFocus: false },
@@ -114,7 +111,7 @@ export default function AccommodationPage() {
         page: 1,
         limit: 100,
         type: "ACCOMMODATION",
-        reference: "68eff0f976da61656a1e6fc9",
+        reference: "691c790bc2946089f91abd6c",
         isHomeScreen: true,
       }),
     { revalidateOnFocus: false },
@@ -138,7 +135,7 @@ export default function AccommodationPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-20">
         <DynamicBreadcrumb items={breadcrumbItems} />
       </div>
-      <div className="space-y-12 mb-12">
+      <div className="space-y-12 mb-12 mt-6">
         <DestinationSection
           type={true}
           path="/accommodation"

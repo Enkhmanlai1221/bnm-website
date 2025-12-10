@@ -143,9 +143,9 @@ export default function AccommodationDetailPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <DynamicBreadcrumb items={breadcrumbItems} />
 
-          <div className="space-y-4 mt-8">
+          <div className="space-y-4 mt-6">
             <h2 className="text-3xl font-bold text-gray-900">
-              Altai Tavan Bogd
+              {detailData?.name}
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 auto-rows-[22rem] gap-4 transition-all duration-300">
               {merchantData?.rows?.map((merchant: any, index: number) => (

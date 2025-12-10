@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import { ImageSkeleton } from "../loading";
+import { HomeDestinationsSkeleton, ImageSkeleton } from "../loading";
 
 export default function HomeInfoPage() {
   const [loadedDestinations, setLoadedDestinations] = useState<
@@ -22,6 +22,7 @@ export default function HomeInfoPage() {
     Record<number, boolean>
   >({});
   const [loadedEvents, setLoadedEvents] = useState<Record<number, boolean>>({});
+
   const destinations = [
     {
       id: 1,
@@ -321,36 +322,37 @@ export default function HomeInfoPage() {
           <div className="text-center mb-6">
             <h2 className="text-4xl font-bold text-gray-900">Destinations</h2>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 auto-rows-[18rem] ">
-            {destinations.map((destination, index) => (
-              <Link
-                href={`/destination`}
-                key={destination.id}
-                className={`group relative overflow-hidden ${getCardInformationClasses(destination.size)} ${getCardInformationHeight(destination.size)} rounded-2xl min-h-[18rem] max-h-[37rem]`}
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                {!loadedDestinations[destination.id] && (
-                  <div className="absolute inset-0">
-                    <ImageSkeleton className="w-full h-full rounded-2xl" />
-                  </div>
-                )}
-                <Image
-                  src={destination.image}
-                  alt={destination.title}
-                  fill
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                  priority={index < 4}
-                  className="duration-700 group-hover:scale-105"
-                  onLoadingComplete={() =>
-                    setLoadedDestinations((prev) => ({
-                      ...prev,
-                      [destination.id]: true,
-                    }))
-                  }
-                />
-              </Link>
-            ))}
-          </div>
+          {!loadedDestinations ? (
+            <HomeDestinationsSkeleton />
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 auto-rows-[18rem] ">
+              {destinations.map((destination, index) => (
+                <Link
+                  href={`/destination`}
+                  key={destination.id}
+                  className={`group relative overflow-hidden ${getCardInformationClasses(destination.size)} ${getCardInformationHeight(destination.size)} rounded-2xl`}
+                >
+                  {!loadedDestinations[destination.id] && (
+                    <div className="absolute inset-0">
+                      <ImageSkeleton className="w-full h-full rounded-2xl" />
+                    </div>
+                  )}
+                  <Image
+                    src={destination.image}
+                    alt={destination.title}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                    onLoadingComplete={() =>
+                      setLoadedDestinations((prev) => ({
+                        ...prev,
+                        [destination.id]: true,
+                      }))
+                    }
+                  />
+                </Link>
+              ))}
+            </div>
+          )}
         </div>
       </div>
 
@@ -369,12 +371,11 @@ export default function HomeInfoPage() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 auto-rows-[18rem] gap-4">
-            {ulaanbaatarCards.map((destination, index) => (
+            {ulaanbaatarCards.map((destination) => (
               <Link
                 key={destination.id}
                 href={`/visit-ulaanbaatar`}
                 className={`group relative overflow-hidden ${getCardInformationClasses(destination.size)} ${getCardInformationHeight(destination.size)} rounded-2xl`}
-                style={{ animationDelay: `${index * 0.1}s` }}
               >
                 {!loadedUlaanbaatar[destination.id] && (
                   <div className="absolute inset-0">
@@ -382,12 +383,11 @@ export default function HomeInfoPage() {
                   </div>
                 )}
                 <Image
+                  fill
                   src={destination.image}
                   alt={destination.title}
-                  fill
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                  priority={index < 2}
-                  className="duration-700 group-hover:scale-105"
+                  className="object-cover duration-700 scale-105"
                   onLoadingComplete={() =>
                     setLoadedUlaanbaatar((prev) => ({
                       ...prev,
@@ -425,7 +425,7 @@ export default function HomeInfoPage() {
                   alt={destination.title}
                   fill
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                  className="duration-700 group-hover:scale-105"
+                  className="cursor-pointer"
                   onLoadingComplete={() =>
                     setLoadedInformation((prev) => ({
                       ...prev,
@@ -461,7 +461,7 @@ export default function HomeInfoPage() {
                   alt={destination.title}
                   fill
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                  className="duration-700 group-hover:scale-105"
+                  className="cursor-pointer"
                   onLoadingComplete={() =>
                     setLoadedAccommodation((prev) => ({
                       ...prev,
@@ -493,11 +493,11 @@ export default function HomeInfoPage() {
                   </div>
                 )}
                 <Image
+                  fill
                   src={destination.image}
                   alt={destination.title}
-                  fill
+                  className="cursor-pointer"
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                  className="duration-700 group-hover:scale-105"
                   onLoadingComplete={() =>
                     setLoadedCommercial((prev) => ({
                       ...prev,
@@ -678,6 +678,18 @@ export default function HomeInfoPage() {
               </div>
             </div>
           </div>
+        </div>
+      </div>
+      <div className="py-16 relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <Image
+            src="/HOME/EXPLORE_TOURS.png"
+            alt="Explore Tours"
+            width={1000}
+            height={1000}
+            // sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+            className="object-cover"
+          />
         </div>
       </div>
       <div className="py-20">

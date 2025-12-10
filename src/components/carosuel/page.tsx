@@ -29,20 +29,19 @@ export function Carosuel({
     return () => clearInterval(interval);
   }, [autoPlay, autoPlayInterval, images.length]);
 
-  useEffect(() => {
-    if (images && images.length > 0) {
-      setImageLoading(new Array(images.length).fill(true));
-      setMainImageLoading(true);
+  // useEffect(() => {
+  //   if (images && images.length > 0) {
+  //     setImageLoading(new Array(images.length).fill(true));
+  //     setMainImageLoading(true);
 
-      // Fallback timeout to prevent infinite loading
-      const timeout = setTimeout(() => {
-        setImageLoading(new Array(images.length).fill(false));
-        setMainImageLoading(false);
-      }, 1000); // 10 second timeout
+  //     const timeout = setTimeout(() => {
+  //       setImageLoading(new Array(images.length).fill(false));
+  //       setMainImageLoading(false);
+  //     }, 300);
 
-      return () => clearTimeout(timeout);
-    }
-  }, [images]);
+  //     return () => clearTimeout(timeout);
+  //   }
+  // }, [images]);
 
   const goToPrevious = () => {
     setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
@@ -82,7 +81,7 @@ export function Carosuel({
 
   if (!images || images.length === 0) {
     return (
-      <div className="flex items-center justify-center h-[50vh] rounded-lg">
+      <div className="flex items-center justify-center aspect-video rounded-lg">
         <p className="text-gray-500">No images available</p>
       </div>
     );
@@ -90,7 +89,7 @@ export function Carosuel({
 
   return (
     <div className="w-full space-y-4">
-      <div className="relative h-[50vh] overflow-hidden rounded-lg group">
+      <div className="relative aspect-video overflow-hidden rounded-lg group">
         {mainImageLoading && <ImageSkeleton className="absolute inset-0" />}
         <div
           className={`absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-300 ${
@@ -179,7 +178,7 @@ export function Carosuel({
             <button
               key={index}
               onClick={() => goToSlide(index)}
-              className={`relative aspect-square overflow-hidden rounded-lg transition-all duration-300 ${
+              className={`relative aspect-video overflow-hidden rounded-lg transition-all duration-300 ${
                 index === currentIndex
                   ? "ring-4 ring-blue-400"
                   : "ring-1 ring-gray-300"
@@ -188,6 +187,7 @@ export function Carosuel({
               {imageLoading[index] && (
                 <ImageSkeleton className="absolute inset-0" />
               )}
+
               <Image
                 src={image}
                 alt={`Thumbnail ${index + 1}`}

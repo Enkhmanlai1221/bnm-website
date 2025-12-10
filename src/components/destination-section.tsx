@@ -10,6 +10,8 @@ interface DestinationSectionProps {
   destinations: IBeautifulPlace[] | undefined;
   type?: boolean;
   limit?: number;
+  isEvents?: boolean;
+  isEventDetail?: boolean;
 }
 
 export default function DestinationSection({
@@ -18,6 +20,8 @@ export default function DestinationSection({
   title,
   destinations,
   type = false,
+  isEvents = false,
+  isEventDetail = false,
 }: DestinationSectionProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
@@ -50,19 +54,7 @@ export default function DestinationSection({
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-24">
       <div className="text-start mb-6">
-        <h2 className="text-3xl font-bold text-gray-900 mb-0">
-          {title === "PLACES_TO_VISIT"
-            ? "Places to Visit"
-            : title === "STATUES_MONUMENTS"
-              ? "Statues & Monuments"
-              : title === "MUSEUMS"
-                ? "Museums"
-                : title === "HISTORY_CAPITAL"
-                  ? "History & Capital"
-                  : title === "INFORMATION_CENTERS"
-                    ? "Information Centers"
-                    : title}
-        </h2>
+        <h2 className="text-3xl font-bold text-gray-900 mb-0">{title}</h2>
       </div>
 
       <div className="relative">
@@ -88,7 +80,7 @@ export default function DestinationSection({
 
         <div
           ref={scrollContainerRef}
-          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 auto-rows-[18rem] gap-4 transition-all duration-300"
+          className={`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 ${isEventDetail ? "lg:grid-cols-3" : "lg:grid-cols-4"} auto-rows-[18rem] gap-4 transition-all duration-300`}
         >
           {visibleDestinations.map((destination, index) => (
             <DestinationCard
@@ -97,6 +89,7 @@ export default function DestinationSection({
               destination={destination}
               index={index}
               type={type}
+              isEvents={isEvents}
             />
           ))}
         </div>

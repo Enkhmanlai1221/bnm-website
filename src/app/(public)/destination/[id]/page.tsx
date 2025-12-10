@@ -1,7 +1,7 @@
 "use client";
 
 import { destinationApi, merchantApi } from "@/apis";
-import { AccommodationDetailContent } from "@/components/accommodation-detail-content";
+import { AccommodationDetailContent } from "@/components/detail/destination";
 import { DynamicBreadcrumb } from "@/components/breadcrumb";
 import { MerchantCard } from "@/components/nearby-merchant/merchant-card";
 import { IBeautifulPlace } from "@/interfaces/beautiful-place";
@@ -10,8 +10,7 @@ import { useParams } from "next/navigation";
 import Image from "next/image";
 import useSWR from "swr";
 import NearbyMerchantCard from "@/components/nearby-merchant/page";
-import { DestinationSkeleton } from "@/components/loading";
-import { Paper } from "@mantine/core";
+import { Card, CardBody } from "@heroui/react";
 
 export default function DestinationDetailPage() {
   const { id } = useParams();
@@ -71,15 +70,16 @@ export default function DestinationDetailPage() {
         <div
           className="relative h-96 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: `url(${data?.mainImage?.url || "/no-image.png"})`,
+            backgroundImage: `url(${data?.mainImage?.url})`,
           }}
         >
           <div className="absolute inset-0 bg-black/30"></div>
           <div className="relative z-20 h-full flex items-center">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
               <div className="text-white">
-                <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold mb-4 drop-shadow-lg">
-                  {data?.name || "Destination"}
+                {/* <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold mb-4 drop-shadow-lg"> */}
+                <h1 className="text-2xl sm:text-3xl md:text-5xl font-light mb-6 text-gray-300 italic">
+                  {data?.name || "-"}
                 </h1>
               </div>
             </div>
@@ -87,8 +87,8 @@ export default function DestinationDetailPage() {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-12 relative z-30">
-        <div className="bg-white rounded-2xl shadow-xl p-4 sm:p-8 mb-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-10 relative z-30">
+        <div className="bg-white rounded-xl shadow-xl p-4 sm:p-6 mb-8">
           <DynamicBreadcrumb items={breadcrumbItems} />
         </div>
       </div>
@@ -114,11 +114,11 @@ export default function DestinationDetailPage() {
                   />
                 ))
               ) : (
-                <Paper className="w-full h-64">
-                  <div className="flex items-center justify-center h-full">
+                <Card className="w-full h-64">
+                  <CardBody className="flex items-center justify-center h-full">
                     <p className="text-gray-500">No nearby merchants found</p>
-                  </div>
-                </Paper>
+                  </CardBody>
+                </Card>
               )}
             </div>
           </div>
@@ -135,7 +135,6 @@ export default function DestinationDetailPage() {
               type={true}
             />
           </div>
-
           <Image
             src="/ESCAPESTORIES.png"
             alt="Visit BNM Tours"

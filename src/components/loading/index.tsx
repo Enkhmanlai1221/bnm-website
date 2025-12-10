@@ -118,3 +118,56 @@ export const DestinationSkeleton = ({ title }: { title: string }) => {
     </div>
   );
 };
+
+export const VisitUlaanbaatarSkeleton = () => {
+  return (
+    <>
+      <div className="text-start mb-6">
+        <div className="h-8 bg-gray-200 rounded w-48 animate-pulse"></div>
+      </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-6 lg:grid-cols-6 auto-rows-[18rem] gap-4 mt-6">
+        <div className="group relative overflow-hidden col-span-3 row-span-1 h-72 rounded-2xl bg-gray-200 animate-pulse"></div>
+        <div className="group relative overflow-hidden col-span-3 row-span-1 h-72 rounded-2xl bg-gray-200 animate-pulse"></div>
+        <div className="group relative overflow-hidden col-span-2 row-span-1 h-72 rounded-2xl bg-gray-200 animate-pulse"></div>
+        <div className="group relative overflow-hidden col-span-2 row-span-1 h-72 rounded-2xl bg-gray-200 animate-pulse"></div>
+        <div className="group relative overflow-hidden col-span-2 row-span-1 h-72 rounded-2xl bg-gray-200 animate-pulse"></div>
+      </div>
+    </>
+  );
+};
+
+export const HomeDestinationsSkeleton = () => {
+  return (
+    <>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <div className="group relative overflow-hidden col-span-1 row-span-1 h-72 rounded-2xl bg-gray-200 animate-pulse"></div>
+        <div className="group relative overflow-hidden col-span-2 row-span-1 h-72 rounded-2xl bg-gray-200 animate-pulse"></div>
+        <div className="group relative overflow-hidden col-span-1 row-span-1 h-72 rounded-2xl bg-gray-200 animate-pulse"></div>
+        <div className="group relative overflow-hidden col-span-2 row-span-1 h-72 rounded-2xl bg-gray-200 animate-pulse"></div>
+        <div className="group relative overflow-hidden col-span-1 row-span-1 h-72 rounded-2xl bg-gray-200 animate-pulse"></div>
+        <div className="group relative overflow-hidden col-span-1 row-span-1 h-72 rounded-2xl bg-gray-200 animate-pulse"></div>
+      </div>
+    </>
+  );
+};
+
+export const PlacesToVisitSkeleton = () => {
+  return (
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 auto-rows-[18rem] gap-4 transition-all duration-300 grid-flow-dense">
+        <div
+          className={`bg-gray-200 animate-pulse justify-start group relative col-span-1 row-span-2 rounded-2xl min-h-[18rem] max-h-[37rem] lg:col-start-1 lg:row-start-1`}
+        ></div>
+        <div
+          className={`bg-gray-200 animate-pulse justify-start group relative col-span-2 row-span-1 rounded-2xl min-h-[18rem] max-h-[37rem] lg:col-start-2 lg:row-start-1`}
+        ></div>
+        <div
+          className={`bg-gray-200 animate-pulse justify-start group relative col-span-2 row-span-1 rounded-2xl min-h-[18rem] max-h-[37rem] lg:col-start-2 lg:row-start-2`}
+        ></div>
+        <div
+          className={`bg-gray-200 animate-pulse justify-start group relative col-span-1 row-span-2 rounded-2xl min-h-[18rem] max-h-[37rem] lg:col-start-4 lg:row-start-1`}
+        ></div>
+      </div>
+    </div>
+  );
+};

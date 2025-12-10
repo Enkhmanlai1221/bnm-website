@@ -22,8 +22,10 @@ export function MerchantCard({ data, index }: { data: any; index: number }) {
             </div>
           )}
           <Image
-            src={data.mainImage?.url}
-            alt={data.mainImage?.url}
+            src={
+              data.vimages?.[0]?.url || data.mainImage?.url || "/no-image.png"
+            }
+            alt={data.vimages?.[0]?.name || data.mainImage?.url || data.name}
             fill
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
             className="duration-700 group-hover:scale-105 transition-transform"

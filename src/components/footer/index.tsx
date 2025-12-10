@@ -93,9 +93,7 @@ const Footer = () => {
           <div className="space-y-3">
             {[
               { href: "/about", text: "About us" },
-              { href: "/destinations", text: "Destinations" },
-              { href: "/tours", text: "Tours" },
-              { href: "/accommodation", text: "Accommodation" },
+              { href: "/Package information", text: "Package information" },
               { href: "#", text: "Package information" },
             ].map((link) => (
               <a

@@ -5,7 +5,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Toaster } from "react-hot-toast";
 import { NuqsAdapter } from "nuqs/adapters/react";
-import { MantineProvider } from "@mantine/core";
+import { HeroUIProvider } from "@heroui/react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -31,7 +31,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <NuqsAdapter>
           <ReduxProvider>
-            <MantineProvider>{children}</MantineProvider>
+            <HeroUIProvider>{children}</HeroUIProvider>
             <Toaster />
           </ReduxProvider>
         </NuqsAdapter>

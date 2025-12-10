@@ -1,6 +1,6 @@
 import { HttpRequest } from "@/utils/request";
 
-const httpRequest = new HttpRequest(null, "/aut/api");
+const httpRequest = new HttpRequest(null, "/bnm/web/merchants");
 
 export const list = async (data: any) => {
   const { count, rows } = await httpRequest.get("/merchants", data);

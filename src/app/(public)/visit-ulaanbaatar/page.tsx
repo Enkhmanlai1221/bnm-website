@@ -1,10 +1,14 @@
 "use client";
 
+import { destinationApi } from "@/apis";
 import { DynamicBreadcrumb } from "@/components/breadcrumb";
+import { ImageSkeleton, VisitUlaanbaatarSkeleton } from "@/components/loading";
+import { IBeautifulPlace } from "@/interfaces/beautiful-place";
+import { IResult } from "@/interfaces/result";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import { ImageSkeleton } from "@/components/loading";
+import useSWR from "swr";
 
 const breadcrumbItems = [
   { label: "Home", href: "/" },
@@ -12,45 +16,13 @@ const breadcrumbItems = [
 ];
 
 export default function VisitUlaanbaatarPage() {
-  const [loadedPlaces, setLoadedPlaces] = useState<Record<number, boolean>>({});
   const [loadedAnar, setLoadedAnar] = useState(false);
-  const places = [
-    {
-      id: 1,
-      image: "/VISIT_UB/VISIT1.png",
-      type: "PLACES_TO_VISIT",
-      size: "wide",
-    },
-    {
-      id: 2,
-      image: "/VISIT_UB/VISIT2.png",
-      type: "STATUES_MONUMENTS",
-      size: "wide",
-    },
-    {
-      id: 3,
-      image: "/VISIT_UB/VISIT3.png",
-      type: "MUSEUMS",
-      size: "medium",
-    },
-    {
-      id: 4,
-      image: "/VISIT_UB/VISIT4.png",
-      type: "HISTORY_CAPITAL",
-      size: "medium",
-    },
-    {
-      id: 5,
-      image: "/VISIT_UB/VISIT5.png",
-      type: "INFORMATION_CENTERS",
-      size: "medium",
-    },
-  ];
+
   const getCardInformationClasses = (size: string) => {
     switch (size) {
-      case "wide":
+      case "WIDE":
         return "col-span-3 row-span-1";
-      case "medium":
+      case "MEDIUM":
         return "col-span-2 row-span-1";
       default:
         return "col-span-1 row-span-1";
@@ -59,52 +31,61 @@ export default function VisitUlaanbaatarPage() {
 
   const getCardInformationHeight = (size: string) => {
     switch (size) {
-      case "wide":
+      case "WIDE":
         return "h-72";
-      case "tall":
+      case "TALL":
         return "h-[36rem]";
-      case "medium":
+      case "MEDIUM":
         return "h-72";
-      case "large":
+      case "LARGE":
         return "h-[36rem]";
       default:
         return "h-72";
     }
   };
+
+  const { data: visitUlaanbaatarData, isLoading: visitUlaanbaatarLoading } =
+    useSWR<IResult<IBeautifulPlace>>(
+      `swr.destination.visitUlaanbaatar`,
+      () =>
+        destinationApi.list({
+          page: 1,
+          limit: 100,
+          type: "VISIT_ULAANBAATAR",
+          // isHomeScreen: true,
+        }),
+      {
+        revalidateOnFocus: false,
+      },
+    );
+
   return (
     <div className="min-h-screen">
       <div className="py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <DynamicBreadcrumb items={breadcrumbItems} />
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-6 lg:grid-cols-6 auto-rows-[18rem] gap-4">
-            {places.map((place, index) => (
-              <Link
-                key={place.id}
-                href={`/visit-ulaanbaatar/category/${place.type}`}
-                className={`group relative overflow-hidden ${getCardInformationClasses(place.size)} ${getCardInformationHeight(place.size)} rounded-2xl`}
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                {!loadedPlaces[place.id] && (
-                  <div className="absolute inset-0">
-                    <ImageSkeleton className="w-full h-full rounded-2xl" />
-                  </div>
-                )}
-                <Image
-                  src={place.image}
-                  alt={place.type}
-                  fill
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 16vw"
-                  className="duration-700 group-hover:scale-105"
-                  onLoadingComplete={() =>
-                    setLoadedPlaces((prev) => ({
-                      ...prev,
-                      [place.id]: true,
-                    }))
-                  }
-                />
-              </Link>
-            ))}
-          </div>
+          {visitUlaanbaatarLoading ? (
+            <VisitUlaanbaatarSkeleton />
+          ) : (
+            <>
+              <DynamicBreadcrumb items={breadcrumbItems} />
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-6 lg:grid-cols-6 auto-rows-[18rem] gap-4 mt-6">
+                {visitUlaanbaatarData?.rows?.map((place: IBeautifulPlace) => (
+                  <Link
+                    key={place._id}
+                    href={`/visit-ulaanbaatar/type/${place._id}`}
+                    className={`group relative overflow-hidden ${getCardInformationClasses(place.imagePosition)} ${getCardInformationHeight(place.imagePosition)} rounded-2xl`}
+                  >
+                    <Image
+                      src={place.mainImage?.url}
+                      alt={place.name}
+                      fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 16vw"
+                    />
+                  </Link>
+                ))}
+              </div>
+            </>
+          )}
         </div>
       </div>
       <div
@@ -145,15 +126,15 @@ export default function VisitUlaanbaatarPage() {
                 </div>
               </div>
             </div>
-            <div className="relative w-full h-80 lg:h-96 rounded-3xl overflow-hidden">
+            {/* <div className="relative w-full h-80 lg:h-96 rounded-3xl overflow-hidden">
               <iframe
                 src="https://www.youtube.com/embed/cPtSIPk2ETo?autoplay=1&mute=1&loop=1&playlist=cPtSIPk2ETo"
                 title="Virtual City Tour"
                 className="w-full h-full object-cover"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
               />
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

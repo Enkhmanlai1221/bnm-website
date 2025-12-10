@@ -1,6 +1,5 @@
 "use client";
 
-import { usePathname } from "next/navigation";
 import { ChevronRightIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 
@@ -32,7 +31,7 @@ export default function DynamicBreadcrumb({
     >
       <ol className="flex items-center space-x-1">
         {items.map((item, index) => (
-          <li key={item.href || index} className="flex items-center">
+          <li key={index} className="flex items-center">
             {index > 0 && (separator || defaultSeparator)}
             {item.isActive ? (
               <span

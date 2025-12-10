@@ -24,7 +24,7 @@ export default function DestinationPage() {
         page: 1,
         limit: 100,
         type: "DESTINATIONS",
-        reference: "68ee93c4b88440a78c3d94e0",
+        reference: "691c752ec2946089f91ab7ed",
         isHomeScreen: true,
       }),
     {
@@ -43,41 +43,7 @@ export default function DestinationPage() {
         page: 1,
         limit: 100,
         type: "DESTINATIONS",
-        reference: "68eff09e76da61656a1e6f93",
-        isHomeScreen: true,
-      }),
-    { revalidateOnFocus: false },
-  );
-
-  const {
-    data: EasternMongoliaData,
-    mutate: EasternMongoliaMutate,
-    isLoading: EasternMongoliaLoading,
-  } = useSWR<IResult<IBeautifulPlace>>(
-    `swr.destination.easternMongolia`,
-    () =>
-      destinationApi.list({
-        page: 1,
-        limit: 100,
-        type: "DESTINATIONS",
-        reference: "68eff05576da61656a1e6f84",
-        isHomeScreen: true,
-      }),
-    { revalidateOnFocus: false },
-  );
-
-  const {
-    data: WesternMongoliaData,
-    mutate: WesternMongoliaMutate,
-    isLoading: WesternMongoliaLoading,
-  } = useSWR<IResult<IBeautifulPlace>>(
-    `swr.destination.westernMongolia`,
-    () =>
-      destinationApi.list({
-        page: 1,
-        limit: 100,
-        type: "DESTINATIONS",
-        reference: "68eff0e476da61656a1e6fb7",
+        reference: "691c772bc2946089f91abb82",
         isHomeScreen: true,
       }),
     { revalidateOnFocus: false },
@@ -94,7 +60,41 @@ export default function DestinationPage() {
         page: 1,
         limit: 100,
         type: "DESTINATIONS",
-        reference: "68eff0f076da61656a1e6fc0",
+        reference: "691c7737c2946089f91abb9c",
+        isHomeScreen: true,
+      }),
+    { revalidateOnFocus: false },
+  );
+
+  const {
+    data: WesternMongoliaData,
+    mutate: WesternMongoliaMutate,
+    isLoading: WesternMongoliaLoading,
+  } = useSWR<IResult<IBeautifulPlace>>(
+    `swr.destination.westernMongolia`,
+    () =>
+      destinationApi.list({
+        page: 1,
+        limit: 100,
+        type: "DESTINATIONS",
+        reference: "691c7744c2946089f91abbb7",
+        isHomeScreen: true,
+      }),
+    { revalidateOnFocus: false },
+  );
+
+  const {
+    data: EasternMongoliaData,
+    mutate: EasternMongoliaMutate,
+    isLoading: EasternMongoliaLoading,
+  } = useSWR<IResult<IBeautifulPlace>>(
+    `swr.destination.easternMongolia`,
+    () =>
+      destinationApi.list({
+        page: 1,
+        limit: 100,
+        type: "DESTINATIONS",
+        reference: "691c775bc2946089f91abbd1",
         isHomeScreen: true,
       }),
     { revalidateOnFocus: false },
@@ -111,7 +111,7 @@ export default function DestinationPage() {
         page: 1,
         limit: 100,
         type: "DESTINATIONS",
-        reference: "68eff0f976da61656a1e6fc9",
+        reference: "691c776ac2946089f91abbeb",
         isHomeScreen: true,
       }),
     { revalidateOnFocus: false },
@@ -143,10 +143,10 @@ export default function DestinationPage() {
         />
         <DestinationSection
           type={true}
-          limit={5}
+          limit={6}
           path="/destination"
-          title="Eastern Mongolia"
-          destinations={EasternMongoliaData?.rows}
+          title="Southern Mongolia"
+          destinations={SouthernMongoliaData?.rows}
         />
         <DestinationSection
           type={true}
@@ -158,8 +158,8 @@ export default function DestinationPage() {
         <DestinationSection
           type={true}
           path="/destination"
-          title="Southern Mongolia"
-          destinations={SouthernMongoliaData?.rows}
+          title="Eastern Mongolia"
+          destinations={EasternMongoliaData?.rows}
         />
         <DestinationSection
           type={true}
