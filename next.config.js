@@ -1,24 +1,41 @@
 /** @type {import('next').NextConfig} */
 
-// const isDevelopment = process.env.NODE_ENV !== "production";
-// const rewritesConfig = isDevelopment
-//   ? [
-//       {
-//         source: "/:path*/bnm/:path*",
-//         destination: `${process.env.NEXT_PUBLIC_BNM_API_HOST}/:path*`,
-//       },
-//     ]
-//   : [];
+const isDevelopment = process.env.NODE_ENV !== "production";
 
-const apiHost = process.env.NEXT_PUBLIC_LOCAL_API_HOST || "";
-const rewritesConfig = apiHost
+// Development дээр /bnm/* rewrites
+const devRewrites = isDevelopment
   ? [
       {
-        source: "/:path*/aut/:path*",
-        destination: `${apiHost}/:path*`,
+        source: "/:path*/bnm/:path*",
+        destination: `${process.env.NEXT_PUBLIC_BNM_API_HOST}/:path*`,
       },
     ]
   : [];
+
+// Production дээр /api/* rewrites (backend API руу дамжуулах)
+// Vercel дээр environment variable-аас backend API хаягийг авна
+const apiHost =
+  process.env.NEXT_PUBLIC_LOCAL_API_HOST ||
+  process.env.NEXT_PUBLIC_API_HOST ||
+  process.env.NEXT_PUBLIC_BNM_API_HOST ||
+  "";
+
+// Production дээр /api/* rewrites тохируулах
+// Хэрэв apiHost байвал rewrites идэвхжүүлнэ
+const prodRewrites =
+  !isDevelopment && apiHost
+    ? [
+        {
+          source: "/api/:path*",
+          destination: `${apiHost}/api/:path*`,
+        },
+      ]
+    : [];
+
+// Production дээр apiHost байхгүй бол rewrites хоосон байх
+// Гэхдээ HttpRequest класс rewrites ашиглахаар тохируулсан тул
+// Vercel дээр environment variable тохируулах шаардлагатай
+const rewritesConfig = [...devRewrites, ...prodRewrites];
 
 const withBundleAnalyzer = require("@next/bundle-analyzer")({
   enabled: process.env.ANALYZE === "true",
