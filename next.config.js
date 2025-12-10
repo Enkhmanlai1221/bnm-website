@@ -20,14 +20,14 @@ const apiHost =
   process.env.NEXT_PUBLIC_BNM_API_HOST ||
   "";
 
-// Production дээр /api/* rewrites тохируулах
+// Production дээр /api/* болон /web/* rewrites тохируулах
 // Хэрэв apiHost байвал rewrites идэвхжүүлнэ
 const prodRewrites =
   !isDevelopment && apiHost
     ? [
         {
-          source: "/api/:path*",
-          destination: `${apiHost}/api/:path*`,
+          source: "/web/:path*",
+          destination: `${apiHost}/web/:path*`,
         },
       ]
     : [];
