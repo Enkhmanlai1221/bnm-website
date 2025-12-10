@@ -1,24 +1,24 @@
 /** @type {import('next').NextConfig} */
 
-const isDevelopment = process.env.NODE_ENV !== "production";
-const rewritesConfig = isDevelopment
-  ? [
-      {
-        source: "/:path*/bnm/:path*",
-        destination: `${process.env.NEXT_PUBLIC_BNM_API_HOST}/:path*`,
-      },
-    ]
-  : [];
-
-//   const apiHost = process.env.NEXT_PUBLIC_LOCAL_API_HOST || "";
-// const rewritesConfig = apiHost
+// const isDevelopment = process.env.NODE_ENV !== "production";
+// const rewritesConfig = isDevelopment
 //   ? [
 //       {
-//         source: "/:path*/aut/:path*",
-//         destination: `${apiHost}/:path*`,
+//         source: "/:path*/bnm/:path*",
+//         destination: `${process.env.NEXT_PUBLIC_BNM_API_HOST}/:path*`,
 //       },
 //     ]
 //   : [];
+
+const apiHost = process.env.NEXT_PUBLIC_LOCAL_API_HOST || "";
+const rewritesConfig = apiHost
+  ? [
+      {
+        source: "/:path*/aut/:path*",
+        destination: `${apiHost}/:path*`,
+      },
+    ]
+  : [];
 
 const withBundleAnalyzer = require("@next/bundle-analyzer")({
   enabled: process.env.ANALYZE === "true",
