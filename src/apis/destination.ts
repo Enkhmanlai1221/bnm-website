@@ -3,10 +3,10 @@ import { BeautifulPlace } from "@/models/beautiful-place";
 import { Result } from "@/models/result";
 import { HttpRequest } from "@/utils/request";
 
-const httpRequest = new HttpRequest(null, "/bnm/web/beautiful-places");
+const httpRequest = new HttpRequest(null, "/web");
 
 export const list = async (data: any) => {
-  const res = await httpRequest.get("", data as any);
+  const res = await httpRequest.get("/beautiful-places", data as any);
 
   return Result.fromJson<IBeautifulPlace>({
     rows: res?.rows?.map((row: IBeautifulPlace) =>
@@ -17,7 +17,7 @@ export const list = async (data: any) => {
 };
 
 export const get = async (id: string) => {
-  const res = await httpRequest.get(`/${id}`);
+  const res = await httpRequest.get(`/beautiful-places/${id}`);
   return BeautifulPlace.fromJson(res);
 };
 
