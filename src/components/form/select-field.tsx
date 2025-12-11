@@ -19,12 +19,9 @@ const SelectField = React.forwardRef<
       isInvalid={!!error}
       errorMessage={error}
       selectedKeys={value ? [String(value)] : []}
-      onSelectionChange={(keys) => {
-        const selectedValue = Array.from(keys)[0] as string;
-        if (selectedValue) {
-          onChange(selectedValue);
-          props.onChange?.(selectedValue);
-        }
+      onChange={(e) => {
+        onChange(e.target.value);
+        props.onChange?.(e.target.value);
       }}
       label={label}
       variant="bordered"

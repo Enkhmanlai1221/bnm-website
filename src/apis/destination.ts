@@ -3,7 +3,7 @@ import { BeautifulPlace } from "@/models/beautiful-place";
 import { Result } from "@/models/result";
 import { HttpRequest } from "@/utils/request";
 
-const httpRequest = new HttpRequest(null, "/web/beautiful-places");
+const httpRequest = new HttpRequest(null, "/bnm/web/beautiful-places");
 
 export const list = async (data: any) => {
   const res = await httpRequest.get("", data as any);

@@ -12,6 +12,7 @@ interface DestinationSectionProps {
   limit?: number;
   isEvents?: boolean;
   isEventDetail?: boolean;
+  isCommercial?: boolean;
 }
 
 export default function DestinationSection({
@@ -21,6 +22,7 @@ export default function DestinationSection({
   destinations,
   type = false,
   isEvents = false,
+  isCommercial = false,
   isEventDetail = false,
 }: DestinationSectionProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -85,11 +87,12 @@ export default function DestinationSection({
           {visibleDestinations.map((destination, index) => (
             <DestinationCard
               path={path}
+              type={type}
+              index={index}
+              isEvents={isEvents}
               key={destination._id}
               destination={destination}
-              index={index}
-              type={type}
-              isEvents={isEvents}
+              isCommercial={isCommercial}
             />
           ))}
         </div>

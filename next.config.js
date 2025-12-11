@@ -54,6 +54,21 @@ const nextConfig = {
   //     "@mantine/dates",
   //   ],
   // },
+  experimental: {
+    optimizeCss: true,
+    workerThreads: true,
+    optimizePackageImports: [
+      "@headlessui/react",
+      "@heroui/react",
+      "react-select",
+      "react-hook-form",
+      "@tabler/icons-react",
+      "framer-motion",
+      "react-scroll",
+      "react-map-gl",
+      "mapbox-gl",
+    ],
+  },
   output: "standalone",
   images: {
     remotePatterns: [

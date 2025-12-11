@@ -1,12 +1,12 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { useParams } from "next/navigation";
-import Image from "next/image";
-import { IMerchant } from "@/interfaces/merchant";
-import useSWR from "swr";
-import { destinationApi, merchantApi } from "@/apis";
+import { foodApi, merchantApi, propertyApi } from "@/apis";
 import { ContentLoading } from "@/components/loading";
+import { IMerchant } from "@/interfaces/merchant";
+import Image from "next/image";
+import { useParams } from "next/navigation";
+import { useEffect, useState } from "react";
+import useSWR from "swr";
 
 const tourProperties = [
   {
@@ -192,6 +192,25 @@ export default function MerchantDetailPage() {
   const { data: detailData, isLoading } = useSWR<any>(
     `swr.merchant.detail.${id}`,
     () => merchantApi.get(id as string),
+  );
+
+  const { data: foodData, isLoading: foodDataLoading } = useSWR<any>(
+    `swr.merchant.food.${id}`,
+    () =>
+      foodApi.list({
+        page: 1,
+        limit: 100,
+        merchant: id as string,
+      }),
+  );
+  const { data: propertyData, isLoading: propertyDataLoading } = useSWR<any>(
+    `swr.merchant.property.${id}`,
+    () =>
+      propertyApi.list({
+        page: 1,
+        limit: 100,
+        merchant: id as string,
+      }),
   );
 
   if (isLoading) {

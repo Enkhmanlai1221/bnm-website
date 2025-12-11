@@ -11,6 +11,7 @@ interface DestinationCardProps {
   type?: boolean;
   path: string;
   isEvents: boolean;
+  isCommercial?: boolean;
 }
 
 export default function DestinationCard({
@@ -19,6 +20,7 @@ export default function DestinationCard({
   index,
   type = false,
   isEvents = false,
+  isCommercial = false,
 }: DestinationCardProps) {
   const [isLoading, setIsLoading] = useState(false);
   const [imageLoading, setImageLoading] = useState(true);

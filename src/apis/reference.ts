@@ -1,7 +1,7 @@
 import { Reference } from "@/models/reference";
 import { HttpRequest } from "@/utils/request";
 
-const httpRequest = new HttpRequest(null, "/web/references");
+const httpRequest = new HttpRequest(null, "/bnm/web/references");
 
 export const list = async (data: any) => {
   const res = await httpRequest.get("", data);

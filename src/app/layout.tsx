@@ -1,5 +1,6 @@
 import ReduxProvider from "@/providers/redux";
 import "@/styles/global.css";
+import "@/styles/override.css";
 import "keen-slider/keen-slider.min.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";

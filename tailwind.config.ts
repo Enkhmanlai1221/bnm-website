@@ -4,9 +4,13 @@ const { heroui } = require("@heroui/react");
 
 const config: Config = {
   content: [
-    "src/app/**/*.{ts,tsx}",
-    "src/components/**/*.{ts,tsx}",
+    "./src/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./node_modules/@heroui/react/dist/**/*.{js,ts,jsx,tsx}",
     "./node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}",
+    "./node_modules/@heroui/**/theme/dist/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     fontSize: {
@@ -34,7 +38,39 @@ const config: Config = {
     },
   },
   darkMode: "class",
-  plugins: [require("@tailwindcss/forms"), heroui()],
+  plugins: [
+    heroui({
+      layout: {
+        fontSize: {
+          tiny: "0.875rem",
+          small: "1rem",
+          medium: "1.125rem",
+          large: "1.25rem",
+          DEFAULT: "1.125rem",
+        },
+        lineHeight: {
+          tiny: "1.25rem",
+          small: "1.5rem",
+          medium: "1.75rem",
+          large: "1.75rem",
+          DEFAULT: "1.75rem",
+        },
+        disabledOpacity: "0.3", // opacity-[0.3]
+        radius: {
+          small: "8px", // rounded-small
+          medium: "10px", // rounded-medium
+          large: "12px", // rounded-large
+        },
+        borderWidth: {
+          small: "1px", // border-small
+          medium: "1px", // border-medium
+          large: "2px", // border-large
+        },
+      },
+    }),
+    require("@tailwindcss/typography"),
+    require("tailwindcss-react-aria-components"),
+  ],
 };
 
 export default config;

@@ -151,6 +151,24 @@ export const HomeDestinationsSkeleton = () => {
   );
 };
 
+export const CommercialSkeleton = () => {
+  return (
+    <>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <div className="group relative overflow-hidden col-span-1 row-span-2 min-h-[18rem] max-h-[37rem] rounded-2xl bg-gray-200 animate-pulse"></div>
+        <div className="group relative overflow-hidden col-span-1 row-span-1 h-72 rounded-2xl bg-gray-200 animate-pulse"></div>
+        <div className="group relative overflow-hidden col-span-1 row-span-1 h-72 rounded-2xl bg-gray-200 animate-pulse"></div>
+        <div className="group relative overflow-hidden col-span-1 row-span-1 h-72 rounded-2xl bg-gray-200 animate-pulse"></div>
+        <div className="group relative overflow-hidden col-span-2 row-span-1 h-72 rounded-2xl bg-gray-200 animate-pulse"></div>
+        <div className="group relative overflow-hidden col-span-1 row-span-2 min-h-[18rem] max-h-[37rem] rounded-2xl bg-gray-200 animate-pulse"></div>
+        <div className="group relative overflow-hidden col-span-1 row-span-1 h-72 rounded-2xl bg-gray-200 animate-pulse"></div>
+        <div className="group relative overflow-hidden col-span-1 row-span-1 h-72 rounded-2xl bg-gray-200 animate-pulse"></div>
+        <div className="group relative overflow-hidden col-span-1 row-span-1 h-72 rounded-2xl bg-gray-200 animate-pulse"></div>
+      </div>
+    </>
+  );
+};
+
 export const PlacesToVisitSkeleton = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-6">

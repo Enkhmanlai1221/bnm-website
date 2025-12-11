@@ -147,7 +147,18 @@ export default function AccommodationDetailPage() {
             <h2 className="text-3xl font-bold text-gray-900">
               {detailData?.name}
             </h2>
-            {merchantData?.rows?.length && merchantData?.rows?.length > 0 ? (
+            {merchantData && merchantData ? (
+              <DestinationSection
+                type={true}
+                path="/accommodation"
+                title="Day trips"
+                destinations={merchantData?.rows}
+              />
+            ) : (
+              <DestinationSkeleton title="Day trips" />
+            )}
+
+            {/* {merchantData?.rows?.length && merchantData?.rows?.length > 0 ? (
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 auto-rows-[22rem] gap-4 transition-all duration-300">
                 {merchantData?.rows?.map((merchant: any, index: number) => (
                   <MerchantCard
@@ -161,7 +172,7 @@ export default function AccommodationDetailPage() {
               <div className="flex items-center justify-center h-64 border border-gray-200 rounded-lg p-4">
                 <div className="text-gray-500">No nearby merchants found</div>
               </div>
-            )}
+            )} */}
           </div>
         </div>
         {nearbyAccommodationData?.rows &&
