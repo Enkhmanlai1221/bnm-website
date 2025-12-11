@@ -56,7 +56,7 @@ const nextConfig = {
   // },
   experimental: {
     optimizeCss: true,
-    workerThreads: true,
+    // workerThreads: true, // Disabled due to webpack config serialization issue in Next.js 15
     optimizePackageImports: [
       "@headlessui/react",
       "@heroui/react",
@@ -123,7 +123,13 @@ const nextConfig = {
     ],
   },
   webpack: (config) => {
-    config.externals = [...config.externals, { canvas: "canvas" }]; // required to make Konva & react-konva work
+    // Handle externals properly for Next.js 15
+    const existingExternals = Array.isArray(config.externals)
+      ? config.externals
+      : config.externals
+        ? [config.externals]
+        : [];
+    config.externals = [...existingExternals, { canvas: "canvas" }]; // required to make Konva & react-konva work
     return config;
   },
   rewrites: async () => rewritesConfig,
