@@ -35,6 +35,8 @@ export default function AccommodationDetailPage() {
       merchantApi.list({
         page: 1,
         limit: 100,
+        // commercial: id as string,
+        // commercialSubType: "6939b7a3835ec55a9e8277b3",
       }),
   );
 

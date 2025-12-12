@@ -236,9 +236,9 @@ export default function MerchantDetailPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="relative h-[50vh] bg-gradient-to-r from-blue-600 to-purple-600 overflow-hidden">
-        {merchant.coverImage && (
+        {detailData.mainImage?.url && (
           <Image
-            src={merchant.coverImage}
+            src={detailData.mainImage?.url}
             alt="Cover"
             fill
             className="object-cover"
@@ -252,9 +252,9 @@ export default function MerchantDetailPage() {
           <div className="flex flex-col md:flex-row items-start md:items-end -mt-16 relative z-10">
             <div className="relative">
               <div className="w-32 h-32 md:w-40 md:h-40 bg-white rounded-full border-4 border-white shadow-lg overflow-hidden">
-                {merchant.profileImage ? (
+                {detailData.mainImage?.url ? (
                   <Image
-                    src={merchant.profileImage}
+                    src={detailData.mainImage?.url}
                     alt={merchant.name}
                     width={160}
                     height={160}
@@ -272,18 +272,18 @@ export default function MerchantDetailPage() {
               <div className="flex flex-col md:flex-row md:items-center md:justify-between">
                 <div>
                   <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
-                    {merchant.name}
+                    {detailData.name}
                   </h1>
                 </div>
 
                 <div className="flex flex-col sm:flex-row gap-3 mb-4">
                   <button className="border border-gray-300 text-gray-700 px-6 py-2 rounded-full hover:bg-gray-50 transition-colors flex items-center justify-center">
                     <span className="mr-2">📞</span>
-                    99770146
+                    {detailData.phone}
                   </button>
                   <button className="border border-gray-300 text-gray-700 px-6 py-2 rounded-full hover:bg-gray-50 transition-colors flex items-center justify-center">
                     <span className="mr-2">📤</span>
-                    info@tsagaansuvarga.com
+                    {detailData.email || "-"}
                   </button>
                 </div>
               </div>

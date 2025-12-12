@@ -1,6 +1,6 @@
 import { HttpRequest } from "@/utils/request";
 
-const httpRequest = new HttpRequest(null, "/web");
+const httpRequest = new HttpRequest(null, "/bnm/web");
 
 export const list = async (data: any) => {
   const { count, rows } = await httpRequest.get("/properties", data);

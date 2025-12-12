@@ -11,7 +11,7 @@ export function MerchantCard({ data, index }: { data: any; index: number }) {
 
   return (
     <div
-      className="group relative overflow-hidden rounded-2xl h-full min-h-[18rem] duration-300 hover:-translate-y-1 transition-all shadow-lg hover:shadow-xl"
+      className="group relative overflow-hidden rounded-2xl h-full min-h-[18rem] duration-300 hover:-translate-y-1 transition-all"
       style={{ animationDelay: `${index * 0.1}s` }}
     >
       <Link href={`/merchant/${data._id}`} className="block h-full">
